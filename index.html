@@ -287,10 +287,10 @@
         <span>Giải nhì "Kaia Contest"</span>
         <button id="btn-read-kaia">Đọc truyện</button>
       </div>
-      <div class="award-item">
-        <span>Top 20 "AVA Contest"</span>
-        <button>Đọc truyện</button>
-      </div>
+     <div class="award-item">
+  <span>Top 20 "AVA Contest"</span>
+  <button id="btn-read-ava">Đọc truyện</button>
+</div>
     </div>
 
     <div class="music-section">
@@ -460,6 +460,24 @@ document.getElementById("btn-read-kaia").addEventListener("click", () => {
   ];
   openComicGallery();
 });
+
+    document.getElementById("btn-read-ava").addEventListener("click", () => {
+  comicPages = [
+    "AVA/01.webp",
+    "AVA/02.webp",
+    "AVA/03.webp",
+    "AVA/04.webp",
+    "AVA/05.webp",
+    "AVA/06.webp",
+    "AVA/07.webp",
+    "AVA/08.webp",
+    "AVA/09.webp",
+    "AVA/10.webp",
+    "AVA/11.webp"
+  ];
+  openComicGallery();
+});
+
   </script>
 </body>
 </html>
