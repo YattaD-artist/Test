@@ -304,20 +304,24 @@
     const deck = document.getElementById("comicDeck");
 
     function renderDeck() {
-      deck.innerHTML = "";
+  deck.innerHTML = "";
 
-      comicPages.forEach((src, i) => {
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = `Page ${i + 1}`;
+  comicPages.forEach((src, i) => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = `Page ${i + 1}`;
 
-        if (i === currentPage) img.classList.add("active");
-        else if (i === currentPage - 1) img.classList.add("left");
-        else if (i === currentPage + 1) img.classList.add("right");
-
-        deck.appendChild(img);
-      });
+    if (i === currentPage) {
+      img.classList.add("active");
+    } else if (i === currentPage - 1 && currentPage > 0) {
+      img.classList.add("left");
+    } else if (i === currentPage + 1 && currentPage < comicPages.length - 1) {
+      img.classList.add("right");
     }
+
+    deck.appendChild(img);
+  });
+}
 
     function openComicGallery() {
       currentPage = 0;
