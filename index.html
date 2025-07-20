@@ -120,6 +120,52 @@
 .PunkgaMerch img:first-of-type {
   margin-top: 0;
 }
+.upz-section {
+  margin-top: 60px;
+  padding-left: 10px;
+}
+
+.upz-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #1e3a8a;
+}
+
+.upz-wrapper {
+  position: relative;
+  width: 560px;
+  height: auto;
+}
+
+.upz-main {
+  width: 560px;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.upz-hover {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 560px;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+/* Khi hover vào ảnh chính, ảnh phụ trượt ra */
+.upz-wrapper:hover .upz-hover {
+  opacity: 1;
+  transform: translateX(20px);
+  pointer-events: auto;
+}
 
     .awards, .music-section {
       margin-top: 2em;
@@ -338,6 +384,13 @@
   <img src="PunkgaMerch01.webp" alt="T-Shirt thiết kế 1" onclick="zoomImage(this)" />
   <img src="PunkgaMerch02.webp" alt="T-Shirt thiết kế 2" onclick="zoomImage(this)" />
   <img src="PunkgaMerch03.webp" alt="T-Shirt thiết kế 3" onclick="zoomImage(this)" />
+</div>
+ <div class="upz-section">
+  <h3>Artwork cho Local Brand UPZ</h3>
+  <div class="upz-wrapper">
+    <img src="UPz.webp" alt="Artwork chính" class="upz-main" />
+    <img src="UPz0.webp" alt="Artwork phụ" class="upz-hover" />
+  </div>
 </div>
 
 <div id="comicViewer" class="comic-viewer" style="display: none;">
