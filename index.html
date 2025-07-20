@@ -5,6 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Comm</title>
   <style>
+    .comic-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  overflow: hidden;
+}
+.comic-image {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+  transition: transform 0.5s ease;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3em;
+  color: white;
+  cursor: pointer;
+  padding: 0 20px;
+  user-select: none;
+  z-index: 10001;
+  transition: transform 0.3s ease;
+}
+.nav-arrow:hover {
+  transform: translateY(-50%) scale(1.2);
+}
+.nav-left { left: 0; }
+.nav-right { right: 0; }
+
     * {
       margin: 0;
       padding: 0;
@@ -233,7 +271,7 @@
       <h3>Một vài giải thưởng vẽ truyện tranh tôi đạt được</h3>
       <div class="award-item">
         <span>Giải nhất "Wow Yourself"</span>
-        <button onclick="openComicGallery()">Đọc truyện</button>
+      <button onclick="openComicGallery()">Đọc truyện</button>
       </div>
       <div class="award-item">
         <span>Giải nhì "Kaia Contest"</span>
@@ -256,11 +294,58 @@
     </div>
   </div>
 
-  <div id="comicOverlay" class="overlay" style="display: none;">
-    <img id="comicImage" src="" alt="Comic Page" />
-  </div>
-
   <script>
+    const comicPages = [
+  "WOW/01.webp",
+  "WOW/02.webp",
+  "WOW/03.webp",
+  "WOW/04.webp",
+  "WOW/05.webp",
+  "WOW/06.webp"
+];
+let currentPage = 0;
+
+function openComicGallery() {
+  const viewer = document.getElementById("comicViewer");
+  const img = document.getElementById("comicImg");
+  viewer.style.display = "flex";
+  currentPage = 0;
+  img.src = comicPages[currentPage];
+}
+
+function closeComicGallery() {
+  document.getElementById("comicViewer").style.display = "none";
+}
+
+function showComicPage(index) {
+  const img = document.getElementById("comicImg");
+  img.style.transform = "translateX(" + (index > currentPage ? "100%" : "-100%") + ")";
+  setTimeout(() => {
+    img.src = comicPages[index];
+    img.style.transform = "translateX(0)";
+  }, 100);
+  currentPage = index;
+}
+
+function prevComicPage() {
+  if (currentPage > 0) {
+    showComicPage(currentPage - 1);
+  }
+}
+
+function nextComicPage() {
+  if (currentPage < comicPages.length - 1) {
+    showComicPage(currentPage + 1);
+  }
+}
+
+window.addEventListener("click", function(e) {
+  const viewer = document.getElementById("comicViewer");
+  if (e.target === viewer) {
+    closeComicGallery();
+  }
+});
+
     function zoomImage(img) {
       const overlay = document.createElement('div');
       overlay.classList.add('overlay');
@@ -273,39 +358,12 @@
       overlay.appendChild(zoomedImg);
       document.body.appendChild(overlay);
     }
-
-    const comicImages = [
-      "WOW/01.webp",
-      "WOW/02.webp",
-      "WOW/03.webp",
-      "WOW/04.webp",
-      "WOW/05.webp",
-      "WOW/06.webp"
-    ];
-
-    let currentComicIndex = 0;
-
-    function openComicGallery() {
-      const overlay = document.getElementById("comicOverlay");
-      const comicImg = document.getElementById("comicImage");
-
-      overlay.style.display = "flex";
-      currentComicIndex = 0;
-      comicImg.src = comicImages[currentComicIndex];
-
-      overlay.onclick = function (e) {
-        if (e.target === comicImg) {
-          currentComicIndex++;
-          if (currentComicIndex < comicImages.length) {
-            comicImg.src = comicImages[currentComicIndex];
-          } else {
-            overlay.style.display = "none";
-          }
-        } else {
-          overlay.style.display = "none";
-        }
-      };
-    }
+    
   </script>
+    <div id="comicViewer" class="comic-viewer" style="display: none;">
+  <div class="nav-arrow nav-left" onclick="prevComicPage()">&#10094;</div>
+  <img id="comicImg" class="comic-image" src="" alt="Comic Page" />
+  <div class="nav-arrow nav-right" onclick="nextComicPage()">&#10095;</div>
+</div>
 </body>
 </html>
