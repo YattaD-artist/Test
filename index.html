@@ -4,52 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Comm</title>
+
+  <!-- Preload ảnh đầu tiên của truyện -->
+  <link rel="preload" as="image" href="WOW/01.webp">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
   <style>
-    /* Vùng xem truyện */
-    .comic-viewer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.9);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-      overflow: hidden;
-    }
-
-    .comic-image {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 8px;
-      transition: transform 0.5s ease, opacity 0.4s ease;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      opacity: 1;
-    }
-
-    .nav-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 3em;
-      color: white;
-      cursor: pointer;
-      padding: 0 20px;
-      user-select: none;
-      z-index: 10001;
-      transition: transform 0.3s ease;
-    }
-
-    .nav-arrow:hover {
-      transform: translateY(-50%) scale(1.2);
-    }
-
-    .nav-left { left: 0; }
-    .nav-right { right: 0; }
-
-    /* Toàn bộ layout */
     * {
       margin: 0;
       padding: 0;
@@ -71,6 +33,11 @@
       justify-content: center;
       text-align: center;
       padding: 40px 20px 20px;
+      transition: filter 0.3s ease;
+    }
+
+    body.blurred {
+      filter: blur(8px);
     }
 
     .content {
@@ -221,40 +188,89 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
+    .comic-viewer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+
+    .comic-deck {
+      position: relative;
+      width: 90vw;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1200px;
+      overflow: hidden;
+    }
+
+    .comic-deck img {
+      position: absolute;
+      max-width: 70vw;
+      max-height: 90vh;
+      border-radius: 10px;
+      opacity: 0;
+      transition: all 0.6s ease;
+      transform: scale(0.8);
+      z-index: 1;
+    }
+
+    .comic-deck img.active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 3;
+    }
+
+    .comic-deck img.left {
+      opacity: 0.5;
+      transform: translateX(-60%) rotateY(20deg) scale(0.9);
+      z-index: 2;
+    }
+
+    .comic-deck img.right {
+      opacity: 0.5;
+      transform: translateX(60%) rotateY(-20deg) scale(0.9);
+      z-index: 2;
+    }
+
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3em;
+      color: white;
+      cursor: pointer;
+      padding: 0 20px;
+      user-select: none;
+      z-index: 10001;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-arrow:hover {
+      transform: translateY(-50%) scale(1.2);
+    }
+
+    .nav-left { left: 0; }
+    .nav-right { right: 0; }
+
     @media (max-width: 600px) {
-      body {
-        padding: 20px 10px 10px;
-      }
-
-      .content {
-        padding: 20px;
-        max-width: 95vw;
-      }
-
-      h1 {
-        font-size: 1.2em;
-        white-space: nowrap;
-      }
-
-      h2 {
-        font-size: 1em;
-      }
-
-      .icons a {
-        font-size: 1.3em;
-      }
-
-      .images img {
-        width: 100%;
-        max-width: 300px;
-      }
-
-      iframe {
-        height: 200px;
-      }
+      body { padding: 20px 10px; }
+      .content { padding: 20px; }
+      h1 { font-size: 1.2em; }
+      h2 { font-size: 1em; }
+      .icons a { font-size: 1.3em; }
+      .images img { width: 100%; max-width: 300px; }
+      iframe { height: 200px; }
     }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
   <div class="content">
@@ -263,10 +279,10 @@
     <p><strong>Portfolio 2025</strong></p>
 
     <div class="icons">
-      <a href="https://www.facebook.com/minipeace2001" title="Facebook"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.instagram.com/minipeace2001/" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.behance.net/maithuytien" title="Behance"><i class="fab fa-behance"></i></a>
-      <a href="https://www.youtube.com/playlist?list=PLR5fl78Q7K1RJs1C-68pNzut2mKCL2Nod" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.facebook.com/minipeace2001"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/minipeace2001/"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.behance.net/maithuytien"><i class="fab fa-behance"></i></a>
+      <a href="https://www.youtube.com/playlist?list=PLR5fl78Q7K1RJs1C-68pNzut2mKCL2Nod"><i class="fab fa-youtube"></i></a>
     </div>
 
     <div class="images">
@@ -293,17 +309,17 @@
     <div class="music-section">
       <h3>Một vài Artwork cho sản phẩm âm nhạc</h3>
       <div class="videos">
-        <iframe src="https://www.youtube.com/embed/1oUTJ3FpdJ8" title="YouTube video" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/3_8VEcalmRE" title="YouTube video" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/PhKgdZEzMxc" title="YouTube video" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/8ka2w0i97Xc" title="YouTube video" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/1oUTJ3FpdJ8" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/3_8VEcalmRE" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/PhKgdZEzMxc" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/8ka2w0i97Xc" allowfullscreen></iframe>
       </div>
     </div>
   </div>
 
-  <div id="comicViewer" class="comic-viewer" style="display: none;">
+  <div id="comicViewer" class="comic-viewer">
     <div class="nav-arrow nav-left" onclick="prevComicPage()">&#10094;</div>
-    <img id="comicImg" class="comic-image" src="" alt="Comic Page" />
+    <div class="comic-deck" id="comicDeck"></div>
     <div class="nav-arrow nav-right" onclick="nextComicPage()">&#10095;</div>
   </div>
 
@@ -317,77 +333,101 @@
       "WOW/06.webp"
     ];
     let currentPage = 0;
+    const viewer = document.getElementById("comicViewer");
+    const deck = document.getElementById("comicDeck");
+
+    function preloadImages() {
+      comicPages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+    }
 
     function openComicGallery() {
-      const viewer = document.getElementById("comicViewer");
-      const img = document.getElementById("comicImg");
       viewer.style.display = "flex";
-      currentPage = 0;
-      img.src = comicPages[currentPage];
+      document.body.classList.add("blurred");
+      renderDeck();
     }
 
     function closeComicGallery() {
-      document.getElementById("comicViewer").style.display = "none";
+      viewer.style.display = "none";
+      document.body.classList.remove("blurred");
+      deck.innerHTML = '';
     }
 
-    function showComicPage(index) {
-      const img = document.getElementById("comicImg");
-      const direction = index > currentPage ? 1 : -1;
-      img.style.transition = "transform 0.4s ease, opacity 0.3s ease";
-      img.style.transform = `translateX(${100 * direction}%)`;
-      img.style.opacity = "0";
-
-      setTimeout(() => {
-        img.src = comicPages[index];
-        img.style.transition = "none";
-        img.style.transform = `translateX(${-100 * direction}%)`;
-
-        requestAnimationFrame(() => {
-          img.style.transition = "transform 0.4s ease, opacity 0.3s ease";
-          img.style.transform = "translateX(0)";
-          img.style.opacity = "1";
-        });
-      }, 300);
-      currentPage = index;
+    function renderDeck() {
+      deck.innerHTML = '';
+      comicPages.forEach((src, i) => {
+        const img = document.createElement('img');
+        img.src = src;
+        if (i === currentPage) img.classList.add('active');
+        else if (i === currentPage - 1) img.classList.add('left');
+        else if (i === currentPage + 1) img.classList.add('right');
+        deck.appendChild(img);
+      });
     }
 
     function prevComicPage() {
       if (currentPage > 0) {
-        showComicPage(currentPage - 1);
+        currentPage--;
+        renderDeck();
       }
     }
 
     function nextComicPage() {
       if (currentPage < comicPages.length - 1) {
-        showComicPage(currentPage + 1);
+        currentPage++;
+        renderDeck();
       }
     }
 
-    window.addEventListener("click", function(e) {
-      const viewer = document.getElementById("comicViewer");
+    function handleKey(e) {
+      if (viewer.style.display !== "flex") return;
+      if (e.key === "ArrowLeft") prevComicPage();
+      else if (e.key === "ArrowRight") nextComicPage();
+      else if (e.key === "Escape") closeComicGallery();
+    }
+
+    function handleClick(e) {
       if (e.target === viewer) {
         closeComicGallery();
+      } else if (e.clientX < window.innerWidth / 2) {
+        prevComicPage();
+      } else {
+        nextComicPage();
       }
-    });
+    }
+
+    let touchStartX = null;
+    function handleTouchStart(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }
+
+    function handleTouchEnd(e) {
+      if (touchStartX === null) return;
+      const deltaX = e.changedTouches[0].screenX - touchStartX;
+      if (deltaX > 50) prevComicPage();
+      else if (deltaX < -50) nextComicPage();
+      touchStartX = null;
+    }
 
     function zoomImage(img) {
       const overlay = document.createElement('div');
       overlay.classList.add('overlay');
       overlay.onclick = () => document.body.removeChild(overlay);
-
       const zoomedImg = document.createElement('img');
       zoomedImg.src = img.src;
       zoomedImg.alt = img.alt;
-
       overlay.appendChild(zoomedImg);
       document.body.appendChild(overlay);
     }
 
-    // Preload comic images
-    comicPages.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
+    window.addEventListener("keydown", handleKey);
+    viewer.addEventListener("click", handleClick);
+    viewer.addEventListener("touchstart", handleTouchStart);
+    viewer.addEventListener("touchend", handleTouchEnd);
+
+    preloadImages();
   </script>
 </body>
 </html>
