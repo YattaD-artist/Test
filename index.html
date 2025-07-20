@@ -323,7 +323,7 @@
     const viewer = document.getElementById("comicViewer");
     const deck = document.getElementById("comicDeck");
 
-    function renderDeck(direction = null) {
+   function renderDeck(direction = null) {
   const prevImgs = Array.from(deck.querySelectorAll("img"));
   const outgoing = prevImgs.find(img => img.classList.contains("active"));
 
@@ -334,11 +334,6 @@
 
   updateDeck();
 }
-        }
-      }
-
-      updateDeck();
-    }
 
     function updateDeck() {
       deck.innerHTML = "";
