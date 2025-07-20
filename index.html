@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comm</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
@@ -318,8 +318,8 @@
       "WOW/05.webp",
       "WOW/06.webp"
     ];
-    let currentPage = 0;
 
+    let currentPage = 0;
     const viewer = document.getElementById("comicViewer");
     const deck = document.getElementById("comicDeck");
 
@@ -331,29 +331,35 @@
         if (outgoing) {
           outgoing.classList.remove("active");
           outgoing.classList.add(direction === "left" ? "slide-out-left" : "slide-out-right");
+
+          outgoing.addEventListener('animationend', () => {
+            updateDeck();
+          }, { once: true });
+          return;
         }
       }
 
-      setTimeout(() => {
-        deck.innerHTML = "";
+      updateDeck();
+    }
 
-        comicPages.forEach((src, i) => {
-          if (i < currentPage - 1 || i > currentPage + 1) return;
-          const img = document.createElement("img");
-          img.src = src;
-          img.alt = `Page ${i + 1}`;
+    function updateDeck() {
+      deck.innerHTML = "";
+      comicPages.forEach((src, i) => {
+        if (i < currentPage - 1 || i > currentPage + 1) return;
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = `Page ${i + 1}`;
 
-          if (i === currentPage) {
-            img.classList.add("active");
-          } else if (i === currentPage - 1) {
-            img.classList.add("left");
-          } else if (i === currentPage + 1) {
-            img.classList.add("right");
-          }
+        if (i === currentPage) {
+          img.classList.add("active");
+        } else if (i === currentPage - 1) {
+          img.classList.add("left");
+        } else if (i === currentPage + 1) {
+          img.classList.add("right");
+        }
 
-          deck.appendChild(img);
-        });
-      }, direction ? 150 : 0);
+        deck.appendChild(img);
+      });
     }
 
     function openComicGallery() {
