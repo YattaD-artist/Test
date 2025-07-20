@@ -176,13 +176,14 @@
       height: 100%;
     }
 
-    .comic-deck img {
-      position: absolute;
-      max-width: 90vw;
-      max-height: 90vh;
-      transition: transform 0.5s ease, filter 0.5s ease, opacity 0.5s ease;
-      border-radius: 8px;
-    }
+.comic-deck img {
+  position: absolute;
+  max-width: 90vw;
+  max-height: 90vh;
+  transition: transform 0.5s ease-in-out, filter 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  transition-delay: 0.05s;
+  border-radius: 8px;
+}
 
     .comic-deck img.active {
       transform: scale(1) translateX(0);
