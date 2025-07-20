@@ -105,6 +105,7 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
+      flex-direction: column;
     }
 
     .overlay img {
@@ -232,7 +233,7 @@
       <h3>Một vài giải thưởng vẽ truyện tranh tôi đạt được</h3>
       <div class="award-item">
         <span>Giải nhất "Wow Yourself"</span>
-        <button>Đọc truyện</button>
+        <button onclick="openComicGallery()">Đọc truyện</button>
       </div>
       <div class="award-item">
         <span>Giải nhì "Kaia Contest"</span>
@@ -255,6 +256,10 @@
     </div>
   </div>
 
+  <div id="comicOverlay" class="overlay" style="display: none;">
+    <img id="comicImage" src="" alt="Comic Page" />
+  </div>
+
   <script>
     function zoomImage(img) {
       const overlay = document.createElement('div');
@@ -267,6 +272,39 @@
 
       overlay.appendChild(zoomedImg);
       document.body.appendChild(overlay);
+    }
+
+    const comicImages = [
+      "WOW/01.webp",
+      "WOW/02.webp",
+      "WOW/03.webp",
+      "WOW/04.webp",
+      "WOW/05.webp",
+      "WOW/06.webp"
+    ];
+
+    let currentComicIndex = 0;
+
+    function openComicGallery() {
+      const overlay = document.getElementById("comicOverlay");
+      const comicImg = document.getElementById("comicImage");
+
+      overlay.style.display = "flex";
+      currentComicIndex = 0;
+      comicImg.src = comicImages[currentComicIndex];
+
+      overlay.onclick = function (e) {
+        if (e.target === comicImg) {
+          currentComicIndex++;
+          if (currentComicIndex < comicImages.length) {
+            comicImg.src = comicImages[currentComicIndex];
+          } else {
+            overlay.style.display = "none";
+          }
+        } else {
+          overlay.style.display = "none";
+        }
+      };
     }
   </script>
 </body>
