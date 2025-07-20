@@ -1,0 +1,21 @@
+/* === Copy toàn bộ CSS từ thẻ <style> cũ === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, rgba(255,192,203,0.3), rgba(173,216,230,0.3)),
+              repeating-linear-gradient(90deg, #dbeafe 0 20px, #bfdbfe 20px 40px),
+              repeating-linear-gradient(0deg, #dbeafe 0 20px, #bfdbfe 20px 40px);
+  background-blend-mode: overlay;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  color: #333;
+  padding: 40px 20px 20px;
+}
+/* ... (toàn bộ đoạn CSS giữ nguyên, không chỉnh sửa) ... */
