@@ -91,6 +91,26 @@
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       width: 280px;
+      cursor: pointer;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 8px;
     }
 
     .awards {
@@ -204,8 +224,8 @@
     </div>
 
     <div class="images">
-      <img src="image01.webp" alt="Artwork 1" />
-      <img src="image02.webp" alt="Artwork 2" />
+      <img src="image01.webp" alt="Artwork 1" onclick="zoomImage(this)" />
+      <img src="image02.webp" alt="Artwork 2" onclick="zoomImage(this)" />
     </div>
 
     <div class="awards">
@@ -234,5 +254,20 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function zoomImage(img) {
+      const overlay = document.createElement('div');
+      overlay.classList.add('overlay');
+      overlay.onclick = () => document.body.removeChild(overlay);
+
+      const zoomedImg = document.createElement('img');
+      zoomedImg.src = img.src;
+      zoomedImg.alt = img.alt;
+
+      overlay.appendChild(zoomedImg);
+      document.body.appendChild(overlay);
+    }
+  </script>
 </body>
 </html>
