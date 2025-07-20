@@ -4,13 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Comm</title>
-
-  <!-- Preload ảnh đầu tiên của truyện -->
-  <link rel="preload" as="image" href="WOW/01.webp">
-
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
   <style>
     * {
       margin: 0;
@@ -19,19 +13,17 @@
     }
 
     body {
-      background:
-        linear-gradient(to right, rgba(255,192,203,0.3), rgba(173,216,230,0.3)),
-        repeating-linear-gradient(90deg, #dbeafe 0 20px, #bfdbfe 20px 40px),
-        repeating-linear-gradient(0deg, #dbeafe 0 20px, #bfdbfe 20px 40px);
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, rgba(255,192,203,0.3), rgba(173,216,230,0.3)),
+                  repeating-linear-gradient(90deg, #dbeafe 0 20px, #bfdbfe 20px 40px),
+                  repeating-linear-gradient(0deg, #dbeafe 0 20px, #bfdbfe 20px 40px);
       background-blend-mode: overlay;
       min-height: 100vh;
-      background-repeat: repeat;
-      font-family: 'Segoe UI', sans-serif;
-      color: #333;
       display: flex;
       align-items: flex-start;
       justify-content: center;
       text-align: center;
+      color: #333;
       padding: 40px 20px 20px;
     }
 
@@ -41,7 +33,6 @@
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.1);
       max-width: 90vw;
-      width: auto;
       min-width: 320px;
     }
 
@@ -50,13 +41,14 @@
       color: #1e3a8a;
       margin-bottom: 0.4em;
       white-space: nowrap;
+      overflow: hidden;
     }
 
     h2 {
       font-size: 1.4em;
-      font-weight: normal;
       color: #555;
       margin-bottom: 1.2em;
+      font-weight: normal;
     }
 
     p {
@@ -92,40 +84,18 @@
     }
 
     .images img {
-      max-width: 100%;
-      height: auto;
+      width: 280px;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 280px;
       cursor: pointer;
     }
 
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      flex-direction: column;
-    }
-
-    .overlay img {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 8px;
-    }
-
-    .awards {
+    .awards, .music-section {
       margin-top: 2em;
       text-align: left;
     }
 
-    .awards h3 {
+    .awards h3, .music-section h3 {
       font-size: 1.2em;
       margin-bottom: 1em;
     }
@@ -159,16 +129,6 @@
       background-color: #2563eb;
     }
 
-    .music-section {
-      margin-top: 2em;
-      text-align: left;
-    }
-
-    .music-section h3 {
-      font-size: 1.2em;
-      margin-bottom: 1em;
-    }
-
     .videos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -188,16 +148,18 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.95);
-      display: none;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
       justify-content: center;
       align-items: center;
       z-index: 10000;
+      overflow: hidden;
     }
 
     .comic-blur-bg {
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       backdrop-filter: blur(10px);
@@ -205,69 +167,70 @@
     }
 
     .comic-deck {
-      position: relative;
-      width: 90vw;
-      height: 90vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      perspective: 1200px;
-      overflow: hidden;
-      z-index: 2;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
     }
 
     .comic-deck img {
       position: absolute;
-      max-width: 70vw;
+      max-width: 90vw;
       max-height: 90vh;
-      border-radius: 10px;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      border-radius: 8px;
       opacity: 0;
-      transition: all 0.6s ease;
-      transform: scale(0.8);
-      z-index: 1;
+      transform: scale(0.8) translateX(100%);
     }
 
     .comic-deck img.active {
       opacity: 1;
-      transform: scale(1);
-      z-index: 3;
+      transform: scale(1) translateX(0);
+      z-index: 2;
     }
 
     .comic-deck img.left {
-      opacity: 0.5;
-      transform: translateX(-60%) rotateY(20deg) scale(0.9);
-      z-index: 2;
+      opacity: 0.4;
+      transform: scale(0.8) translateX(-100%);
+      z-index: 1;
     }
 
     .comic-deck img.right {
-      opacity: 0.5;
-      transform: translateX(60%) rotateY(-20deg) scale(0.9);
-      z-index: 2;
+      opacity: 0.4;
+      transform: scale(0.8) translateX(100%);
+      z-index: 1;
     }
 
-    .nav-arrow {
+    .close-btn {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 3em;
+      top: 20px;
+      right: 30px;
+      font-size: 2em;
+      background: none;
+      border: none;
       color: white;
       cursor: pointer;
-      padding: 0 20px;
-      user-select: none;
-      z-index: 3;
-      transition: transform 0.3s ease;
+      z-index: 10;
+      transition: transform 0.2s ease;
     }
 
-    .nav-arrow:hover {
-      transform: translateY(-50%) scale(1.2);
+    .close-btn:hover {
+      transform: scale(1.2);
     }
-
-    .nav-left { left: 0; }
-    .nav-right { right: 0; }
 
     @media (max-width: 600px) {
-      body { padding: 20px 10px; }
-      .content { padding: 20px; }
+      body {
+        padding: 20px 10px;
+      }
+
+      .content {
+        padding: 20px;
+        max-width: 95vw;
+      }
+
       h1 { font-size: 1.2em; }
       h2 { font-size: 1em; }
       .icons a { font-size: 1.3em; }
@@ -321,11 +284,10 @@
     </div>
   </div>
 
-  <div id="comicViewer" class="comic-viewer">
+  <div id="comicViewer" class="comic-viewer" style="display: none;">
     <div class="comic-blur-bg"></div>
-    <div class="nav-arrow nav-left" onclick="prevComicPage()">&#10094;</div>
+    <button class="close-btn" onclick="closeComicGallery()">✕</button>
     <div class="comic-deck" id="comicDeck"></div>
-    <div class="nav-arrow nav-right" onclick="nextComicPage()">&#10095;</div>
   </div>
 
   <script>
@@ -342,96 +304,103 @@
     const viewer = document.getElementById("comicViewer");
     const deck = document.getElementById("comicDeck");
 
-    function preloadImages() {
-      comicPages.forEach(src => {
-        const img = new Image();
+    function renderDeck() {
+      deck.innerHTML = "";
+
+      comicPages.forEach((src, i) => {
+        const img = document.createElement("img");
         img.src = src;
+        img.alt = `Page ${i + 1}`;
+
+        if (i === currentPage) img.classList.add("active");
+        else if (i < currentPage) img.classList.add("left");
+        else if (i > currentPage) img.classList.add("right");
+
+        deck.appendChild(img);
       });
     }
 
     function openComicGallery() {
+      currentPage = 0;
       viewer.style.display = "flex";
       renderDeck();
     }
 
     function closeComicGallery() {
       viewer.style.display = "none";
-      deck.innerHTML = '';
     }
 
-    function renderDeck() {
-      deck.innerHTML = '';
-      comicPages.forEach((src, i) => {
-        const img = document.createElement('img');
-        img.src = src;
-        if (i === currentPage) img.classList.add('active');
-        else if (i === currentPage - 1) img.classList.add('left');
-        else if (i === currentPage + 1) img.classList.add('right');
-        deck.appendChild(img);
-      });
-    }
+    function handleClick(e) {
+      if (e.target === viewer || e.target.classList.contains('comic-blur-bg')) {
+        closeComicGallery();
+        return;
+      }
 
-    function prevComicPage() {
-      if (currentPage > 0) {
+      const x = e.clientX;
+      const half = window.innerWidth / 2;
+
+      if (x < half && currentPage > 0) {
         currentPage--;
         renderDeck();
-      }
-    }
-
-    function nextComicPage() {
-      if (currentPage < comicPages.length - 1) {
+      } else if (x >= half && currentPage < comicPages.length - 1) {
         currentPage++;
         renderDeck();
       }
     }
 
-    function handleKey(e) {
-      if (viewer.style.display !== "flex") return;
-      if (e.key === "ArrowLeft") prevComicPage();
-      else if (e.key === "ArrowRight") nextComicPage();
-      else if (e.key === "Escape") closeComicGallery();
-    }
-
-    function handleClick(e) {
-      if (e.target === viewer) {
+    viewer.addEventListener("click", handleClick);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" && currentPage < comicPages.length - 1) {
+        currentPage++;
+        renderDeck();
+      } else if (e.key === "ArrowLeft" && currentPage > 0) {
+        currentPage--;
+        renderDeck();
+      } else if (e.key === "Escape") {
         closeComicGallery();
-      } else if (e.clientX < window.innerWidth / 2) {
-        prevComicPage();
-      } else {
-        nextComicPage();
       }
+    });
+
+    viewer.addEventListener("touchstart", handleTouchStart, false);
+    viewer.addEventListener("touchend", handleTouchEnd, false);
+
+    let xDown = null;
+
+    function handleTouchStart(evt) {
+      xDown = evt.touches[0].clientX;
     }
 
-    let touchStartX = null;
-    function handleTouchStart(e) {
-      touchStartX = e.changedTouches[0].screenX;
-    }
+    function handleTouchEnd(evt) {
+      if (!xDown) return;
+      const xUp = evt.changedTouches[0].clientX;
+      const xDiff = xDown - xUp;
 
-    function handleTouchEnd(e) {
-      if (touchStartX === null) return;
-      const deltaX = e.changedTouches[0].screenX - touchStartX;
-      if (deltaX > 50) prevComicPage();
-      else if (deltaX < -50) nextComicPage();
-      touchStartX = null;
+      if (xDiff > 50 && currentPage < comicPages.length - 1) {
+        currentPage++;
+        renderDeck();
+      } else if (xDiff < -50 && currentPage > 0) {
+        currentPage--;
+        renderDeck();
+      }
+      xDown = null;
     }
 
     function zoomImage(img) {
       const overlay = document.createElement('div');
-      overlay.classList.add('overlay');
-      overlay.onclick = () => document.body.removeChild(overlay);
-      const zoomedImg = document.createElement('img');
-      zoomedImg.src = img.src;
-      zoomedImg.alt = img.alt;
-      overlay.appendChild(zoomedImg);
+      overlay.classList.add('comic-viewer');
+      const zoomed = document.createElement('img');
+      zoomed.src = img.src;
+      zoomed.style.maxWidth = '90vw';
+      zoomed.style.maxHeight = '90vh';
+      zoomed.style.borderRadius = '8px';
+      overlay.appendChild(zoomed);
+      overlay.addEventListener('click', () => document.body.removeChild(overlay));
       document.body.appendChild(overlay);
     }
 
-    window.addEventListener("keydown", handleKey);
-    viewer.addEventListener("click", handleClick);
-    viewer.addEventListener("touchstart", handleTouchStart);
-    viewer.addEventListener("touchend", handleTouchEnd);
-
-    preloadImages();
+    // Preload first comic page
+    const preload = new Image();
+    preload.src = comicPages[0];
   </script>
 </body>
 </html>
