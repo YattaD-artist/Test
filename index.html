@@ -284,7 +284,7 @@
       </div>
       <div class="award-item">
         <span>Giải nhì "Kaia Contest"</span>
-        <button>Đọc truyện</button>
+        <button id="btn-read-kaia">Đọc truyện</button>
       </div>
       <div class="award-item">
         <span>Top 20 "AVA Contest"</span>
@@ -310,14 +310,14 @@
   </div>
 
   <script>
-    const comicPages = [
-      "WOW/01.webp",
-      "WOW/02.webp",
-      "WOW/03.webp",
-      "WOW/04.webp",
-      "WOW/05.webp",
-      "WOW/06.webp"
-    ];
+    let comicPages = [
+  "WOW/01.webp",
+  "WOW/02.webp",
+  "WOW/03.webp",
+  "WOW/04.webp",
+  "WOW/05.webp",
+  "WOW/06.webp"
+];
 
     let currentPage = 0;
     const viewer = document.getElementById("comicViewer");
@@ -437,7 +437,28 @@
     preload.src = comicPages[0];
 
     // Attach event after all functions are defined
-    document.getElementById("btn-read-wow").addEventListener("click", openComicGallery);
+    document.getElementById("btn-read-wow").addEventListener("click", () => {
+  comicPages = [
+    "WOW/01.webp",
+    "WOW/02.webp",
+    "WOW/03.webp",
+    "WOW/04.webp",
+    "WOW/05.webp",
+    "WOW/06.webp"
+  ];
+  openComicGallery();
+});
+
+document.getElementById("btn-read-kaia").addEventListener("click", () => {
+  comicPages = [
+    "KAYA/01.webp",
+    "KAYA/02.webp",
+    "KAYA/03.webp",
+    "KAYA/04.webp",
+    "KAYA/05.webp"
+  ];
+  openComicGallery();
+});
   </script>
 </body>
 </html>
