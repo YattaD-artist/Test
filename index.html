@@ -303,7 +303,7 @@
     const viewer = document.getElementById("comicViewer");
     const deck = document.getElementById("comicDeck");
 
-    function renderDeck() {
+ function renderDeck() {
   deck.innerHTML = "";
 
   comicPages.forEach((src, i) => {
@@ -315,7 +315,7 @@
       img.classList.add("active");
     } else if (i === currentPage - 1 && currentPage > 0) {
       img.classList.add("left");
-    } else if (i === currentPage + 1 && currentPage < comicPages.length - 1) {
+    } else if (i === currentPage + 1 && i < comicPages.length) {
       img.classList.add("right");
     }
 
