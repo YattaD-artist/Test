@@ -182,7 +182,6 @@
       max-height: 90vh;
       transition: transform 0.4s ease, filter 0.4s ease;
       border-radius: 8px;
-      transform: scale(0.8) translateX(100%);
     }
 
     .comic-deck img.active {
@@ -193,13 +192,13 @@
 
     .comic-deck img.left {
       filter: brightness(0.7) contrast(0.8);
-      transform: scale(0.8) translateX(-100%);
+      transform: scale(0.8) translateX(-110%) rotateY(8deg);
       z-index: 1;
     }
 
     .comic-deck img.right {
       filter: brightness(0.7) contrast(0.8);
-      transform: scale(0.8) translateX(100%);
+      transform: scale(0.8) translateX(110%) rotateY(-8deg);
       z-index: 1;
     }
 
@@ -303,35 +302,25 @@
     const viewer = document.getElementById("comicViewer");
     const deck = document.getElementById("comicDeck");
 
-function renderDeck() {
-  deck.innerHTML = "";
+    function renderDeck() {
+      deck.innerHTML = "";
+      comicPages.forEach((src, i) => {
+        if (i < currentPage - 1 || i > currentPage + 1) return;
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = `Page ${i + 1}`;
 
-  // Trang hiện tại
-  const currentImg = document.createElement("img");
-  currentImg.src = comicPages[currentPage];
-  currentImg.alt = `Page ${currentPage + 1}`;
-  currentImg.classList.add("active");
-  deck.appendChild(currentImg);
+        if (i === currentPage) {
+          img.classList.add("active");
+        } else if (i === currentPage - 1) {
+          img.classList.add("left");
+        } else if (i === currentPage + 1) {
+          img.classList.add("right");
+        }
 
-  // Trang trước (nếu có)
-  if (currentPage > 0) {
-    const prevImg = document.createElement("img");
-    prevImg.src = comicPages[currentPage - 1];
-    prevImg.alt = `Page ${currentPage}`;
-    prevImg.classList.add("left");
-    deck.appendChild(prevImg);
-  }
-
-  // Trang sau (nếu có)
-  if (currentPage < comicPages.length - 1) {
-    const nextImg = document.createElement("img");
-    nextImg.src = comicPages[currentPage + 1];
-    nextImg.alt = `Page ${currentPage + 2}`;
-    nextImg.classList.add("right");
-    deck.appendChild(nextImg);
-  }
-}
-
+        deck.appendChild(img);
+      });
+    }
 
     function openComicGallery() {
       currentPage = 0;
@@ -410,9 +399,6 @@ function renderDeck() {
       overlay.addEventListener('click', () => document.body.removeChild(overlay));
       document.body.appendChild(overlay);
     }
-
-    const preload = new Image();
-    preload.src = comicPages[0];
   </script>
 </body>
 </html>
