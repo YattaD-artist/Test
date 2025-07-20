@@ -254,62 +254,63 @@
   </style>
 </head>
 <body>
-  <div class="content">
-    <h1>MINI PEACE | MAI THỦY TIÊN</h1>
-    <h2>FREELANCE 2D ARTIST</h2>
-    <p><strong>Portfolio 2025</strong></p>
+<div class="content">
+  <h1>MINI PEACE | MAI THỦY TIÊN</h1>
+  <h2>FREELANCE 2D ARTIST</h2>
+  <p><strong>Portfolio 2025</strong></p>
 
-    <div class="icons">
-      <a href="https://www.facebook.com/minipeace2001"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.instagram.com/minipeace2001/"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.behance.net/maithuytien"><i class="fab fa-behance"></i></a>
-      <a href="https://www.youtube.com/playlist?list=PLR5fl78Q7K1RJs1C-68pNzut2mKCL2Nod"><i class="fab fa-youtube"></i></a>
+  <div class="icons">
+    <a href="https://www.facebook.com/minipeace2001" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com/minipeace2001/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.behance.net/maithuytien" aria-label="Behance"><i class="fab fa-behance"></i></a>
+    <a href="https://www.youtube.com/playlist?list=PLR5fl78Q7K1RJs1C-68pNzut2mKCL2Nod" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <div class="images">
+    <img src="image01.webp" alt="Artwork Hello" loading="lazy" onclick="zoomImage(this)" />
+    <img src="image02.webp" alt="Artwork Works" loading="lazy" onclick="zoomImage(this)" />
+  </div>
+
+  <div class="awards">
+    <h3>Một vài giải thưởng vẽ truyện tranh tôi đạt được</h3>
+    <div class="award-item">
+      <span>Giải nhất "Wow Yourself"</span>
+      <button id="btn-read-wow">Đọc truyện</button>
     </div>
-
-    <div class="images">
-      <img src="image01.webp" alt="Hello" onclick="zoomImage(this)" />
-      <img src="image02.webp" alt="Works" onclick="zoomImage(this)" />
+    <div class="award-item">
+      <span>Giải nhì "Kaia Contest"</span>
+      <button id="btn-read-kaia">Đọc truyện</button>
     </div>
+    <div class="award-item">
+      <span>Top 20 "AVA Contest"</span>
+      <button id="btn-read-ava">Đọc truyện</button>
+    </div>
+  </div>
 
-    <div class="awards">
-      <h3>Một vài giải thưởng vẽ truyện tranh tôi đạt được</h3>
-      <div class="award-item">
-        <span>Giải nhất "Wow Yourself"</span>
-        <button id="btn-read-wow">Đọc truyện</button>
-      </div>
-      <div class="award-item">
-        <span>Giải nhì "Kaia Contest"</span>
-        <button id="btn-read-kaia">Đọc truyện</button>
-      </div>
-     <div class="award-item">
-  <span>Top 20 "AVA Contest"</span>
-  <button id="btn-read-ava">Đọc truyện</button>
+  <div class="music-section">
+    <h3>Một vài Artwork cho sản phẩm âm nhạc</h3>
+    <div class="videos">
+      <iframe src="https://www.youtube.com/embed/1oUTJ3FpdJ8" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/3_8VEcalmRE" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/PhKgdZEzMxc" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/8ka2w0i97Xc" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <div class="PunkgaMerch">
+    <h3>T-Shirts collab cùng PunkgaMe</h3>
+    <img src="PunkgaMerch01.webp" alt="T-Shirt thiết kế 1" loading="lazy" onclick="zoomImage(this)" /><br>
+    <img src="PunkgaMerch02.webp" alt="T-Shirt thiết kế 2" loading="lazy" onclick="zoomImage(this)" /><br>
+    <img src="PunkgaMerch03.webp" alt="T-Shirt thiết kế 3" loading="lazy" onclick="zoomImage(this)" />
+  </div>
 </div>
+
+<div id="comicViewer" class="comic-viewer" style="display: none;">
+  <div class="comic-blur-bg"></div>
+  <button class="close-btn" onclick="closeComicGallery()">✕</button>
+  <div class="comic-deck" id="comicDeck"></div>
 </div>
-    <div class="music-section">
-      <h3>Một vài Artwork cho sản phẩm âm nhạc</h3>
-      <div class="videos">
-        <iframe src="https://www.youtube.com/embed/1oUTJ3FpdJ8" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/3_8VEcalmRE" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/PhKgdZEzMxc" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/8ka2w0i97Xc" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-    <div class="PunkgaMerch">
-      <h3>T-Shirts collab cùng PunkgaMe</h3>
-      <img src="PunkgaMerch01.webp" alt="Artwork 1" onclick="zoomImage(this)" /> <br>
-      <img src="PunkgaMerch02.webp" alt="Artwork 2" onclick="zoomImage(this)" /> <br>
-      <img src="PunkgaMerch03.webp" alt="Artwork 3" onclick="zoomImage(this)" />
-    </div>
-  </div>
-  </div>
-  
-  <div id="comicViewer" class="comic-viewer" style="display: none;">
-    <div class="comic-blur-bg"></div>
-    <button class="close-btn" onclick="closeComicGallery()">✕</button>
-    <div class="comic-deck" id="comicDeck"></div>
-  </div>
+
 
   <script>
     let comicPages = [];
