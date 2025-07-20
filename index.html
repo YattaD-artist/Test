@@ -95,7 +95,15 @@
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-  padding-top: 0; /* tùy chỉnh nếu cần */
+  margin-top: 60px;
+  padding-left: 10px;
+}
+
+.PunkgaMerch h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 40px;
+  color: #1e3a8a; /* xanh đậm tinh tế, có thể tùy biến */
 }
 
 .PunkgaMerch img {
@@ -105,19 +113,12 @@
   cursor: pointer;
   position: relative;
   z-index: 1;
-  margin-top: -305px; /* chính là 6/11 của ảnh (560 * 11 / 6 ≈ 305) */
-  transition: transform 0.3s ease, z-index 0.3s ease;
+  margin-top: -240px; /* khoảng chồng hợp lý, không sát */
 }
 
-/* Ảnh đầu tiên không cần margin-top âm */
+/* Ảnh đầu tiên giữ nguyên vị trí */
 .PunkgaMerch img:first-of-type {
   margin-top: 0;
-}
-
-/* Khi hover thì nổi bật */
-.PunkgaMerch img:hover {
-  z-index: 10;
-  transform: scale(1.05);
 }
 
     .awards, .music-section {
