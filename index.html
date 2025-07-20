@@ -91,36 +91,33 @@
     }
     
 .PunkgaMerch {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   position: relative;
-  height: 700px; /* tùy chiều cao ảnh mà bạn chỉnh */
-  margin-top: 40px;
+  padding-top: 0; /* tùy chỉnh nếu cần */
 }
 
 .PunkgaMerch img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 560px;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   cursor: pointer;
+  position: relative;
+  z-index: 1;
+  margin-top: -305px; /* chính là 6/11 của ảnh (560 * 11 / 6 ≈ 305) */
   transition: transform 0.3s ease, z-index 0.3s ease;
 }
 
-/* Xếp chồng theo chỉ số thứ tự */
-.PunkgaMerch img:nth-child(2) {
-  transform: translateX(55%);
-  z-index: 1;
-}
-.PunkgaMerch img:nth-child(3) {
-  transform: translateX(110%);
-  z-index: 2;
+/* Ảnh đầu tiên không cần margin-top âm */
+.PunkgaMerch img:first-of-type {
+  margin-top: 0;
 }
 
-/* Khi hover thì ảnh nhô lên trên */
+/* Khi hover thì nổi bật */
 .PunkgaMerch img:hover {
   z-index: 10;
-  transform: scale(1.05) translateX(110%); /* tùy chọn nếu muốn */
+  transform: scale(1.05);
 }
 
     .awards, .music-section {
@@ -336,11 +333,10 @@
   </div>
 
   <div class="PunkgaMerch">
-    <h3>T-Shirts collab cùng PunkgaMe</h3>
-    <img src="PunkgaMerch01.webp" alt="T-Shirt thiết kế 1" loading="lazy" onclick="zoomImage(this)" />
-    <img src="PunkgaMerch02.webp" alt="T-Shirt thiết kế 2" loading="lazy" onclick="zoomImage(this)" />
-    <img src="PunkgaMerch03.webp" alt="T-Shirt thiết kế 3" loading="lazy" onclick="zoomImage(this)" />
-  </div>
+  <h3>T-Shirts collab cùng PunkgaMe</h3>
+  <img src="PunkgaMerch01.webp" alt="T-Shirt thiết kế 1" onclick="zoomImage(this)" />
+  <img src="PunkgaMerch02.webp" alt="T-Shirt thiết kế 2" onclick="zoomImage(this)" />
+  <img src="PunkgaMerch03.webp" alt="T-Shirt thiết kế 3" onclick="zoomImage(this)" />
 </div>
 
 <div id="comicViewer" class="comic-viewer" style="display: none;">
