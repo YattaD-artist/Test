@@ -5,551 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comm</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
- * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, rgba(255,192,203,0.3), rgba(173,216,230,0.3)),
-                  repeating-linear-gradient(90deg, #dbeafe 0 20px, #bfdbfe 20px 40px),
-                  repeating-linear-gradient(0deg, #dbeafe 0 20px, #bfdbfe 20px 40px);
-      background-blend-mode: overlay;
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      text-align: center;
-      color: #333;
-      padding: 40px 20px 20px;
-    }
-
-    .content {
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-      max-width: 90vw;
-      min-width: 320px;
-    }
-
-    h1 {
-      font-size: 2em;
-      color: #1e3a8a;
-      margin-bottom: 0.4em;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-
-    h2 {
-      font-size: 1.4em;
-      color: #555;
-      margin-bottom: 1.2em;
-      font-weight: normal;
-    }
-h3 {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #1e3a8a;
-  margin-top: 60px;
-  margin-bottom: 30px;
-  line-height: 1.4;
-  text-align: left;
-}
-
-    p {
-      font-size: 1em;
-      margin: 0.4em 0;
-    }
-
-    .icons {
-      margin-top: 1.5em;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .icons a {
-      color: #1e3a8a;
-      font-size: 1.5em;
-      text-decoration: none;
-      transition: transform 0.2s ease;
-    }
-
-    .icons a:hover {
-      transform: scale(1.2);
-    }
-
-    .images {
-      margin-top: 2em;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .images img {
-      width: 280px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer;
-    }
-    
-.PunkgaMerch {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  margin-top: 60px;
-  padding-left: 10px;
-}
-
-.PunkgaMerch img {
-  width: 560px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  cursor: pointer;
-  position: relative;
-  z-index: 1;
-  margin-top: -240px; /* khoảng chồng hợp lý, không sát */
-}
-
-/* Ảnh đầu tiên giữ nguyên vị trí */
-.PunkgaMerch img:first-of-type {
-  margin-top: 0;
-}
-.upz-section {
-  margin-top: 60px;
-  padding-left: 10px;
-}
-
-.upz-wrapper {
-  position: relative;
-  width: 560px;
-  height: auto;
-}
-
-.upz-main {
-  width: 560px;
-  display: block;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  cursor: pointer;
-}
-
-.upz-hover {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  width: 560px;
-  height: 100%;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: all 0.4s ease;
-  pointer-events: none;
-}
-
-/* Khi hover vào ảnh chính, ảnh phụ trượt ra */
-.upz-wrapper:hover .upz-hover {
-  opacity: 1;
-  transform: translateX(20px);
-  pointer-events: auto;
-}
-
-    .awards, .music-section {
-      margin-top: 2em;
-      text-align: left;
-    }
-
-    .award-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      background: rgba(255,255,255,0.6);
-      padding: 10px 15px;
-      border-radius: 8px;
-    }
-
-    .award-item span {
-      font-weight: 500;
-    }
-
-    .award-item button {
-      background-color: #3b82f6;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.9em;
-      transition: background-color 0.2s ease;
-    }
-    .award-item button:hover {
-      background-color: #2563eb;
-    }
-
-    .videos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    iframe {
-      width: 100%;
-      height: 160px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .comic-viewer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.85);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-      overflow: hidden;
-    }
-
-    .comic-blur-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      backdrop-filter: blur(10px);
-      z-index: 0;
-    }
-
-    .comic-deck {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-    }
-
-.comic-deck img {
-  position: absolute;
-  max-width: 90vw;
-  max-height: 90vh;
-  transition: transform 0.5s ease-in-out, filter 0.6s ease-in-out, opacity 0.6s ease-in-out;
-  transition-delay: 0.05s;
-  border-radius: 8px;
-}
-
-    .comic-deck img.active {
-      transform: scale(1) translateX(0);
-      filter: brightness(1) contrast(1);
-      z-index: 2;
-    }
-
-.comic-deck img.left {
-  transform: scale(0.85) translateX(-696px) rotateY(5deg);
-  filter: brightness(0.6) contrast(0.8);
-  z-index: 1;
-}
-
-.comic-deck img.right {
-  transform: scale(0.85) translateX(696px) rotateY(-5deg);
-  filter: brightness(0.6) contrast(0.8);
-  z-index: 1;
-}
-
-@keyframes slide-left {
-  0% { transform: scale(1) translateX(0); opacity: 1; }
-  100% { transform: scale(0.75) translateX(-696px) rotateZ(12deg); opacity: 0.8; }
-}
-
-@keyframes slide-right {
-  0% { transform: scale(1) translateX(0); opacity: 1; }
-  100% { transform: scale(0.75) translateX(696px) rotateZ(-12deg); opacity: 0.8; }
-}
-
-
-    img.slide-out-left {
-      animation: slide-left 0.4s ease forwards;
-      z-index: 1;
-    }
-
-    img.slide-out-right {
-      animation: slide-right 0.4s ease forwards;
-      z-index: 1;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 2em;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-      z-index: 10;
-      transition: transform 0.2s ease;
-    }
-
-    .close-btn:hover {
-      transform: scale(1.2);
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding: 20px 10px;
-      }
-
-      .content {
-        padding: 20px;
-        max-width: 95vw;
-      }
-
-      h1 { font-size: 1.2em; }
-      h2 { font-size: 1em; }
-      .icons a { font-size: 1.3em; }
-      .images img { width: 100%; max-width: 300px; }
-      iframe { height: 200px; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="content">
-  <h1>MINI PEACE | MAI THỦY TIÊN</h1>
-  <h2>FREELANCE 2D ARTIST</h2>
-  <p><strong>Portfolio 2025</strong></p>
+  <div class="content">
+    <h1>MINI PEACE | MAI THỦY TIÊN</h1>
+    <h2>FREELANCE 2D ARTIST</h2>
+    <p><strong>Portfolio 2025</strong></p>
 
-  <div class="icons">
-    <a href="https://www.facebook.com/minipeace2001" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-    <a href="https://www.instagram.com/minipeace2001/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.behance.net/maithuytien" aria-label="Behance"><i class="fab fa-behance"></i></a>
-    <a href="https://www.youtube.com/playlist?list=PLR5fl78Q7K1RJs1C-68pNzut2mKCL2Nod" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-  </div>
-
-  <div class="images">
-    <img src="image01.webp" alt="Artwork Hello" loading="lazy" onclick="zoomImage(this)" />
-    <img src="image02.webp" alt="Artwork Works" loading="lazy" onclick="zoomImage(this)" />
-  </div>
-
-  <div class="awards">
-    <h3>Một vài giải thưởng vẽ truyện tranh tôi đạt được</h3>
-    <div class="award-item">
-      <span>Giải nhất "Wow Yourself"</span>
-      <button id="btn-read-wow">Đọc truyện</button>
+    <div class="icons">
+      <a href="https://www.facebook.com/minipeace2001" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/minipeace2001/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.behance.net/maithuytien" aria-label="Behance"><i class="fab fa-behance"></i></a>
+      <a href="https://www.youtube.com/playlist?list=PLR5fl78Q7K1RJs1C-68pNzut2mKCL2Nod" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
     </div>
-    <div class="award-item">
-      <span>Giải nhì "Kaia Contest"</span>
-      <button id="btn-read-kaia">Đọc truyện</button>
+
+    <div class="images">
+      <img src="image01.webp" alt="Artwork Hello" loading="lazy" onclick="zoomImage(this)" />
+      <img src="image02.webp" alt="Artwork Works" loading="lazy" onclick="zoomImage(this)" />
     </div>
-    <div class="award-item">
-      <span>Top 20 "AVA Contest"</span>
-      <button id="btn-read-ava">Đọc truyện</button>
+
+    <div class="awards">
+      <h3>Một vài giải thưởng vẽ truyện tranh tôi đạt được</h3>
+      <div class="award-item">
+        <span>Giải nhất "Wow Yourself"</span>
+        <button id="btn-read-wow">Đọc truyện</button>
+      </div>
+      <div class="award-item">
+        <span>Giải nhì "Kaia Contest"</span>
+        <button id="btn-read-kaia">Đọc truyện</button>
+      </div>
+      <div class="award-item">
+        <span>Top 20 "AVA Contest"</span>
+        <button id="btn-read-ava">Đọc truyện</button>
+      </div>
+    </div>
+
+    <div class="music-section">
+      <h3>Một vài Artwork cho sản phẩm âm nhạc</h3>
+      <div class="videos">
+        <iframe src="https://www.youtube.com/embed/1oUTJ3FpdJ8" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/3_8VEcalmRE" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/PhKgdZEzMxc" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/8ka2w0i97Xc" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="PunkgaMerch">
+      <h3>T-Shirts collab cùng PunkgaMe</h3>
+      <img src="PunkgaMerch01.webp" alt="T-Shirt thiết kế 1" onclick="zoomImage(this)" />
+      <img src="PunkgaMerch02.webp" alt="T-Shirt thiết kế 2" onclick="zoomImage(this)" />
+      <img src="PunkgaMerch03.webp" alt="T-Shirt thiết kế 3" onclick="zoomImage(this)" />
+    </div>
+
+    <div class="upz-section">
+      <h3>Artwork cho Local Brand UPZ</h3>
+      <div class="upz-wrapper">
+        <img src="UPz.webp" alt="Artwork chính" class="upz-main" />
+        <img src="UPz0.webp" alt="Artwork phụ" class="upz-hover" />
+      </div>
     </div>
   </div>
 
-  <div class="music-section">
-    <h3>Một vài Artwork cho sản phẩm âm nhạc</h3>
-    <div class="videos">
-      <iframe src="https://www.youtube.com/embed/1oUTJ3FpdJ8" allowfullscreen loading="lazy"></iframe>
-      <iframe src="https://www.youtube.com/embed/3_8VEcalmRE" allowfullscreen loading="lazy"></iframe>
-      <iframe src="https://www.youtube.com/embed/PhKgdZEzMxc" allowfullscreen loading="lazy"></iframe>
-      <iframe src="https://www.youtube.com/embed/8ka2w0i97Xc" allowfullscreen loading="lazy"></iframe>
-    </div>
+  <div id="comicViewer" class="comic-viewer" style="display: none;">
+    <div class="comic-blur-bg"></div>
+    <button class="close-btn" onclick="closeComicGallery()">✕</button>
+    <div class="comic-deck" id="comicDeck"></div>
   </div>
 
-  <div class="PunkgaMerch">
-  <h3>T-Shirts collab cùng PunkgaMe</h3>
-  <img src="PunkgaMerch01.webp" alt="T-Shirt thiết kế 1" onclick="zoomImage(this)" />
-  <img src="PunkgaMerch02.webp" alt="T-Shirt thiết kế 2" onclick="zoomImage(this)" />
-  <img src="PunkgaMerch03.webp" alt="T-Shirt thiết kế 3" onclick="zoomImage(this)" />
-</div>
- <div class="upz-section">
-  <h3>Artwork cho Local Brand UPZ</h3>
-  <div class="upz-wrapper">
-    <img src="UPz.webp" alt="Artwork chính" class="upz-main" />
-    <img src="UPz0.webp" alt="Artwork phụ" class="upz-hover" />
-  </div>
-</div>
-
-<div id="comicViewer" class="comic-viewer" style="display: none;">
-  <div class="comic-blur-bg"></div>
-  <button class="close-btn" onclick="closeComicGallery()">✕</button>
-  <div class="comic-deck" id="comicDeck"></div>
-</div>
-
-
-  <script>
-    let comicPages = [];
-    let currentPage = 0;
-    const viewer = document.getElementById("comicViewer");
-    const deck = document.getElementById("comicDeck");
-
-    function renderDeck(direction = null) {
-      const prevImgs = Array.from(deck.querySelectorAll("img"));
-      const outgoing = prevImgs.find(img => img.classList.contains("active"));
-
-      if (direction && outgoing) {
-        outgoing.classList.remove("active");
-        outgoing.classList.add(direction === "left" ? "slide-out-left" : "slide-out-right");
-      }
-
-      updateDeck();
-    }
-
-    function updateDeck() {
-      deck.innerHTML = "";
-      comicPages.forEach((src, i) => {
-        if (i < currentPage - 1 || i > currentPage + 1) return;
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = `Page ${i + 1}`;
-
-        if (i === currentPage) {
-          img.classList.add("active");
-        } else if (i === currentPage - 1) {
-          img.classList.add("left");
-        } else if (i === currentPage + 1) {
-          img.classList.add("right");
-        }
-
-        deck.appendChild(img);
-      });
-    }
-
-    function openComicGallery() {
-      currentPage = 0;
-      viewer.style.display = "flex";
-      renderDeck();
-    }
-
-    function closeComicGallery() {
-      viewer.style.display = "none";
-    }
-
-    function handleClick(e) {
-      if (e.target === viewer || e.target.classList.contains('comic-blur-bg')) {
-        closeComicGallery();
-        return;
-      }
-
-      const x = e.clientX;
-      const half = window.innerWidth / 2;
-
-      if (x < half && currentPage > 0) {
-        currentPage--;
-        renderDeck("right");
-      } else if (x >= half && currentPage < comicPages.length - 1) {
-        currentPage++;
-        renderDeck("left");
-      }
-    }
-
-    viewer.addEventListener("click", handleClick);
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight" && currentPage < comicPages.length - 1) {
-        currentPage++;
-        renderDeck("left");
-      } else if (e.key === "ArrowLeft" && currentPage > 0) {
-        currentPage--;
-        renderDeck("right");
-      } else if (e.key === "Escape") {
-        closeComicGallery();
-      }
-    });
-
-    viewer.addEventListener("touchstart", handleTouchStart, false);
-    viewer.addEventListener("touchend", handleTouchEnd, false);
-
-    let xDown = null;
-
-    function handleTouchStart(evt) {
-      xDown = evt.touches[0].clientX;
-    }
-
-    function handleTouchEnd(evt) {
-      if (!xDown) return;
-      const xUp = evt.changedTouches[0].clientX;
-      const xDiff = xDown - xUp;
-
-      if (xDiff > 50 && currentPage < comicPages.length - 1) {
-        currentPage++;
-        renderDeck("left");
-      } else if (xDiff < -50 && currentPage > 0) {
-        currentPage--;
-        renderDeck("right");
-      }
-      xDown = null;
-    }
-
-    function zoomImage(img) {
-      const overlay = document.createElement('div');
-      overlay.classList.add('comic-viewer');
-      const zoomed = document.createElement('img');
-      zoomed.src = img.src;
-      zoomed.style.maxWidth = '90vw';
-      zoomed.style.maxHeight = '90vh';
-      zoomed.style.borderRadius = '8px';
-      overlay.appendChild(zoomed);
-      overlay.addEventListener('click', () => document.body.removeChild(overlay));
-      document.body.appendChild(overlay);
-    }
-
-    const preload = new Image();
-    preload.src = comicPages[0];
-
-    // Attach event after all functions are defined
-    document.getElementById("btn-read-wow").addEventListener("click", () => {
-  comicPages = [
-    "WOW/01.webp",
-    "WOW/02.webp",
-    "WOW/03.webp",
-    "WOW/04.webp",
-    "WOW/05.webp",
-    "WOW/06.webp"
-  ];
-  openComicGallery();
-});
-
-document.getElementById("btn-read-kaia").addEventListener("click", () => {
-  comicPages = [
-    "KAYA/01.webp",
-    "KAYA/02.webp",
-    "KAYA/03.webp",
-    "KAYA/04.webp",
-    "KAYA/05.webp"
-  ];
-  openComicGallery();
-});
-
-    document.getElementById("btn-read-ava").addEventListener("click", () => {
-  comicPages = [
-    "AVA/01.webp",
-    "AVA/02.webp",
-    "AVA/03.webp",
-    "AVA/04.webp",
-    "AVA/05.webp",
-    "AVA/06.webp",
-    "AVA/07.webp",
-    "AVA/08.webp",
-    "AVA/09.webp",
-    "AVA/10.webp",
-    "AVA/11.webp"
-  ];
-  openComicGallery();
-});
-
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
