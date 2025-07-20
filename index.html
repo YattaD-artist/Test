@@ -180,7 +180,7 @@
       position: absolute;
       max-width: 90vw;
       max-height: 90vh;
-      transition: transform 0.4s ease, filter 0.4s ease;
+      transition: transform 0.5s ease, filter 0.5s ease, opacity 0.5s ease;
       border-radius: 8px;
     }
 
@@ -191,14 +191,34 @@
     }
 
     .comic-deck img.left {
-      filter: brightness(0.7) contrast(0.8);
-      transform: scale(0.8) translateX(-110%) rotateY(8deg);
+      transform: scale(0.85) translateX(-120%) rotateY(6deg);
+      filter: brightness(0.6) contrast(0.8);
       z-index: 1;
     }
 
     .comic-deck img.right {
-      filter: brightness(0.7) contrast(0.8);
-      transform: scale(0.8) translateX(110%) rotateY(-8deg);
+      transform: scale(0.85) translateX(120%) rotateY(-6deg);
+      filter: brightness(0.6) contrast(0.8);
+      z-index: 1;
+    }
+
+    @keyframes slide-left {
+      0% { transform: scale(1) translateX(0); opacity: 1; }
+      100% { transform: scale(0.85) translateX(-120%) rotateY(6deg); opacity: 0.6; }
+    }
+
+    @keyframes slide-right {
+      0% { transform: scale(1) translateX(0); opacity: 1; }
+      100% { transform: scale(0.85) translateX(120%) rotateY(-6deg); opacity: 0.6; }
+    }
+
+    img.slide-out-left {
+      animation: slide-left 0.4s ease forwards;
+      z-index: 1;
+    }
+
+    img.slide-out-right {
+      animation: slide-right 0.4s ease forwards;
       z-index: 1;
     }
 
@@ -302,24 +322,37 @@
     const viewer = document.getElementById("comicViewer");
     const deck = document.getElementById("comicDeck");
 
-    function renderDeck() {
-      deck.innerHTML = "";
-      comicPages.forEach((src, i) => {
-        if (i < currentPage - 1 || i > currentPage + 1) return;
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = `Page ${i + 1}`;
+    function renderDeck(direction = null) {
+      const prevImgs = Array.from(deck.querySelectorAll("img"));
 
-        if (i === currentPage) {
-          img.classList.add("active");
-        } else if (i === currentPage - 1) {
-          img.classList.add("left");
-        } else if (i === currentPage + 1) {
-          img.classList.add("right");
+      if (direction && prevImgs.length) {
+        const outgoing = prevImgs.find(img => img.classList.contains("active"));
+        if (outgoing) {
+          outgoing.classList.remove("active");
+          outgoing.classList.add(direction === "left" ? "slide-out-left" : "slide-out-right");
         }
+      }
 
-        deck.appendChild(img);
-      });
+      setTimeout(() => {
+        deck.innerHTML = "";
+
+        comicPages.forEach((src, i) => {
+          if (i < currentPage - 1 || i > currentPage + 1) return;
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = `Page ${i + 1}`;
+
+          if (i === currentPage) {
+            img.classList.add("active");
+          } else if (i === currentPage - 1) {
+            img.classList.add("left");
+          } else if (i === currentPage + 1) {
+            img.classList.add("right");
+          }
+
+          deck.appendChild(img);
+        });
+      }, direction ? 150 : 0);
     }
 
     function openComicGallery() {
@@ -343,10 +376,10 @@
 
       if (x < half && currentPage > 0) {
         currentPage--;
-        renderDeck();
+        renderDeck("right");
       } else if (x >= half && currentPage < comicPages.length - 1) {
         currentPage++;
-        renderDeck();
+        renderDeck("left");
       }
     }
 
@@ -354,10 +387,10 @@
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight" && currentPage < comicPages.length - 1) {
         currentPage++;
-        renderDeck();
+        renderDeck("left");
       } else if (e.key === "ArrowLeft" && currentPage > 0) {
         currentPage--;
-        renderDeck();
+        renderDeck("right");
       } else if (e.key === "Escape") {
         closeComicGallery();
       }
@@ -379,10 +412,10 @@
 
       if (xDiff > 50 && currentPage < comicPages.length - 1) {
         currentPage++;
-        renderDeck();
+        renderDeck("left");
       } else if (xDiff < -50 && currentPage > 0) {
         currentPage--;
-        renderDeck();
+        renderDeck("right");
       }
       xDown = null;
     }
@@ -399,6 +432,9 @@
       overlay.addEventListener('click', () => document.body.removeChild(overlay));
       document.body.appendChild(overlay);
     }
+
+    const preload = new Image();
+    preload.src = comicPages[0];
   </script>
 </body>
 </html>
