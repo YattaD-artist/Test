@@ -21,9 +21,6 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: var(--bg-color);
-      background-image: url("/mnt/data/a527a231-29eb-4bb8-84ab-1a9c8c9598f4.png");
-      background-repeat: repeat;
-      background-size: 80px 80px;
       color: var(--text-color);
       scroll-behavior: smooth;
     }
@@ -53,9 +50,24 @@
       max-width: 900px;
       margin: 60px auto;
       padding: 0 20px;
+      position: relative;
+    }
+
+    .pattern-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/mnt/data/f5bb42bb-b552-4d0f-8f2d-99157f378778.png');
+      background-repeat: repeat;
+      background-size: 80px 80px;
+      opacity: 0.3;
+      z-index: 0;
     }
 
     .card {
+      position: relative;
       background: var(--card-bg);
       margin-bottom: 30px;
       padding: 24px;
@@ -64,6 +76,7 @@
       transition: all 0.6s ease;
       opacity: 0;
       transform: translateY(40px);
+      z-index: 1;
     }
 
     .card h2 {
@@ -109,6 +122,8 @@
   </header>
 
   <section>
+    <div class="pattern-bg"></div>
+
     <div class="card" id="card1">
       <h2>🔹 Phần 1 – Giới thiệu</h2>
       <p>Đây là phần giới thiệu hehe.</p>
