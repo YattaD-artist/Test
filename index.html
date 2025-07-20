@@ -1,17 +1,10 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Comm</title>
   <style>
-    :root {
-      --main-color: #4e79a7;
-      --bg-color: #f9f9f9;
-      --text-color: #333;
-      --card-bg: #fff;
-    }
-
     * {
       margin: 0;
       padding: 0;
@@ -19,152 +12,81 @@
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      scroll-behavior: smooth;
-    }
-
-    header {
-      background: var(--main-color);
-      color: #fff;
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 3em;
-      margin-bottom: 0.4em;
-      animation: fadeInDown 1s ease forwards;
-      animation-delay: 0.2s;
-    }
-
-    header p {
-      font-size: 1.2em;
-      opacity: 0.85;
-      animation: fadeInUp 1s ease forwards;
-      animation-delay: 0.5s;
-    }
-
-    section {
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 0 20px;
-      position: relative;
-    }
-
-    .pattern-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('/mnt/data/f5bb42bb-b552-4d0f-8f2d-99157f378778.png');
+      background:
+        linear-gradient(to right, rgba(255,192,203,0.3), rgba(173,216,230,0.3)),
+        repeating-linear-gradient(90deg, #dbeafe 0 20px, #bfdbfe 20px 40px),
+        repeating-linear-gradient(0deg, #dbeafe 0 20px, #bfdbfe 20px 40px);
+      background-blend-mode: overlay;
+      min-height: 100vh;
       background-repeat: repeat;
-      background-size: 80px 80px;
-      opacity: 0.3;
-      z-index: 0;
-    }
-
-    .card {
-      position: relative;
-      background: var(--card-bg);
-      margin-bottom: 30px;
-      padding: 24px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      transition: all 0.6s ease;
-      opacity: 0;
-      transform: translateY(40px);
-      z-index: 1;
-    }
-
-    .card h2 {
-      margin-bottom: 12px;
-      color: var(--main-color);
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-    }
-
-    footer {
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 40px 20px;
-      color: #888;
-      font-size: 0.9em;
+      padding: 40px;
     }
 
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .content {
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      max-width: 500px;
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    h1 {
+      font-size: 2em;
+      color: #1e3a8a;
+      margin-bottom: 0.4em;
+      white-space: nowrap;
     }
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 2em; }
-      header p { font-size: 1em; }
-      .card { padding: 16px; }
+    h2 {
+      font-size: 1.4em;
+      font-weight: normal;
+      color: #555;
+      margin-bottom: 1.2em;
+    }
+
+    p {
+      font-size: 1em;
+      margin: 0.4em 0;
+    }
+
+    .icons {
+      margin-top: 1.5em;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .icons a {
+      color: #1e3a8a;
+      font-size: 1.5em;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .icons a:hover {
+      transform: scale(1.2);
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
-
 <body>
+  <div class="content">
+    <h1>MINI PEACE | MAI THỦY TIÊN</h1>
+    <h2>FREELANCE 2D ARTIST</h2>
+    <p><strong>Porfolio 2025</strong></p>
 
-  <header>
-    <h1>Mini Peace | Mai Thủy Tiên</h1>
-    <p>Nhận các loại commissions và hơn thế nữa.</p>
-  </header>
-
-  <section>
-    <div class="pattern-bg"></div>
-
-    <div class="card" id="card1">
-      <h2>🔹 Phần 1 – Giới thiệu</h2>
-      <p>Đây là phần giới thiệu hehe.</p>
+    <div class="icons">
+      <a href="https://www.facebook.com/minipeace2001" title="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/minipeace2001/" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.behance.net/maithuytien" title="Behance"><i class="fab fa-behance"></i></a>
+      <a href="https://www.youtube.com/playlist?list=PLR5fl78Q7K1RJs1C-68pNzut2mKCL2Nod" title="YouTube"><i class="fab fa-youtube"></i></a>
     </div>
-
-    <div class="card" id="card2">
-      <h2>🔹 Phần 2 – Chi tiết</h2>
-      <p>Thêm mô tả chi tiết, tệp đính kèm, hoặc các bước hướng dẫn trong card này.</p>
-    </div>
-
-    <div class="card" id="card3">
-      <h2>🔹 Phần 3 – Liên hệ</h2>
-      <p>Thêm các kênh liên hệ như email, link mạng xã hội, form hoặc donate.</p>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 – Mini Peace | Mai Thủy Tiên | Commissions.
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const cards = document.querySelectorAll('.card');
-      const options = {
-        threshold: 0.1
-      };
-
-      const observer = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target);
-          }
-        });
-      }, options);
-
-      cards.forEach(card => {
-        observer.observe(card);
-      });
-    });
-  </script>
+  </div>
 </body>
 </html>
