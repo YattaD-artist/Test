@@ -259,7 +259,7 @@
   </style>
 </head>
 <body>
-  <div class="content">
+   <div class="content">
     <h1>MINI PEACE | MAI THỦY TIÊN</h1>
     <h2>FREELANCE 2D ARTIST</h2>
     <p><strong>Portfolio 2025</strong></p>
@@ -324,18 +324,16 @@
     const deck = document.getElementById("comicDeck");
 
     function renderDeck(direction = null) {
-      const prevImgs = Array.from(deck.querySelectorAll("img"));
+  const prevImgs = Array.from(deck.querySelectorAll("img"));
+  const outgoing = prevImgs.find(img => img.classList.contains("active"));
 
-      if (direction && prevImgs.length) {
-        const outgoing = prevImgs.find(img => img.classList.contains("active"));
-        if (outgoing) {
-          outgoing.classList.remove("active");
-          outgoing.classList.add(direction === "left" ? "slide-out-left" : "slide-out-right");
+  if (direction && outgoing) {
+    outgoing.classList.remove("active");
+    outgoing.classList.add(direction === "left" ? "slide-out-left" : "slide-out-right");
+  }
 
-          outgoing.addEventListener('animationend', () => {
-            updateDeck();
-          }, { once: true });
-          return;
+  updateDeck();
+}
         }
       }
 
