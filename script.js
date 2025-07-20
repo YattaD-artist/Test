@@ -115,7 +115,6 @@ function zoomImage(img) {
 
 const preload = new Image();
 preload.src = comicPages[0];
-
 document.getElementById("btn-read-wow").addEventListener("click", () => {
   comicPages = [
     "WOW/01.webp", "WOW/02.webp", "WOW/03.webp",
