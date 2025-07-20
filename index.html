@@ -303,25 +303,35 @@
     const viewer = document.getElementById("comicViewer");
     const deck = document.getElementById("comicDeck");
 
- function renderDeck() {
+function renderDeck() {
   deck.innerHTML = "";
 
-  comicPages.forEach((src, i) => {
-    const img = document.createElement("img");
-    img.src = src;
-    img.alt = `Page ${i + 1}`;
+  // Trang hiện tại
+  const currentImg = document.createElement("img");
+  currentImg.src = comicPages[currentPage];
+  currentImg.alt = `Page ${currentPage + 1}`;
+  currentImg.classList.add("active");
+  deck.appendChild(currentImg);
 
-    if (i === currentPage) {
-      img.classList.add("active");
-    } else if (i === currentPage - 1 && currentPage > 0) {
-      img.classList.add("left");
-    } else if (i === currentPage + 1 && i < comicPages.length) {
-      img.classList.add("right");
-    }
+  // Trang trước (nếu có)
+  if (currentPage > 0) {
+    const prevImg = document.createElement("img");
+    prevImg.src = comicPages[currentPage - 1];
+    prevImg.alt = `Page ${currentPage}`;
+    prevImg.classList.add("left");
+    deck.appendChild(prevImg);
+  }
 
-    deck.appendChild(img);
-  });
+  // Trang sau (nếu có)
+  if (currentPage < comicPages.length - 1) {
+    const nextImg = document.createElement("img");
+    nextImg.src = comicPages[currentPage + 1];
+    nextImg.alt = `Page ${currentPage + 2}`;
+    nextImg.classList.add("right");
+    deck.appendChild(nextImg);
+  }
 }
+
 
     function openComicGallery() {
       currentPage = 0;
