@@ -6,7 +6,7 @@
   <title>Comm</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    * {
+ * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -259,7 +259,7 @@
   </style>
 </head>
 <body>
-   <div class="content">
+  <div class="content">
     <h1>MINI PEACE | MAI THỦY TIÊN</h1>
     <h2>FREELANCE 2D ARTIST</h2>
     <p><strong>Portfolio 2025</strong></p>
@@ -280,7 +280,7 @@
       <h3>Một vài giải thưởng vẽ truyện tranh tôi đạt được</h3>
       <div class="award-item">
         <span>Giải nhất "Wow Yourself"</span>
-        <button onclick="openComicGallery()">Đọc truyện</button>
+        <button id="btn-read-wow">Đọc truyện</button>
       </div>
       <div class="award-item">
         <span>Giải nhì "Kaia Contest"</span>
@@ -323,17 +323,17 @@
     const viewer = document.getElementById("comicViewer");
     const deck = document.getElementById("comicDeck");
 
-   function renderDeck(direction = null) {
-  const prevImgs = Array.from(deck.querySelectorAll("img"));
-  const outgoing = prevImgs.find(img => img.classList.contains("active"));
+    function renderDeck(direction = null) {
+      const prevImgs = Array.from(deck.querySelectorAll("img"));
+      const outgoing = prevImgs.find(img => img.classList.contains("active"));
 
-  if (direction && outgoing) {
-    outgoing.classList.remove("active");
-    outgoing.classList.add(direction === "left" ? "slide-out-left" : "slide-out-right");
-  }
+      if (direction && outgoing) {
+        outgoing.classList.remove("active");
+        outgoing.classList.add(direction === "left" ? "slide-out-left" : "slide-out-right");
+      }
 
-  updateDeck();
-}
+      updateDeck();
+    }
 
     function updateDeck() {
       deck.innerHTML = "";
@@ -435,6 +435,9 @@
 
     const preload = new Image();
     preload.src = comicPages[0];
+
+    // Attach event after all functions are defined
+    document.getElementById("btn-read-wow").addEventListener("click", openComicGallery);
   </script>
 </body>
 </html>
