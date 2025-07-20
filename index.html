@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comm Tóm Tắt – Giao diện Carrd</title>
+  <style>
+    :root {
+      --main-color: #4e79a7;
+      --bg-color: #f9f9f9;
+      --text-color: #333;
+      --card-bg: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: var(--main-color);
+      color: #fff;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 0.4em;
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    header p {
+      font-size: 1.2em;
+      opacity: 0.85;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      margin-bottom: 30px;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .card h2 {
+      margin-bottom: 12px;
+      color: var(--main-color);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #888;
+      font-size: 0.9em;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Comm Tóm Tắt</h1>
+    <p>Trang tổng hợp các phần mô tả sắc sảo, đơn giản & chuyên nghiệp.</p>
+  </header>
+
+  <section>
+    <div class="card" id="card1">
+      <h2>🔹 Phần 1 – Giới thiệu</h2>
+      <p>Đây là phần giới thiệu nội dung. Mọi thứ được gói gọn trong một khối card sạch sẽ, hiệu ứng mượt mà.</p>
+    </div>
+
+    <div class="card" id="card2">
+      <h2>🔹 Phần 2 – Chi tiết</h2>
+      <p>Thêm mô tả chi tiết, tệp đính kèm, hoặc các bước hướng dẫn trong card này. Có thể lặp lại nhiều lần.</p>
+    </div>
+
+    <div class="card" id="card3">
+      <h2>🔹 Phần 3 – Liên hệ</h2>
+      <p>Thêm các kênh liên hệ như email, link mạng xã hội, form hoặc nút đăng ký nếu muốn.</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 – Comm Tóm Tắt | Giao diện thiết kế theo phong cách Carrd.
+  </footer>
+
+  <script>
+    // Scroll reveal nhẹ nhàng
+    const cards = document.querySelectorAll('.card');
+    const options = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>
