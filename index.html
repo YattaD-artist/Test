@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
@@ -36,12 +36,14 @@
       font-size: 3em;
       margin-bottom: 0.4em;
       animation: fadeInDown 1s ease forwards;
+      animation-delay: 0.2s;
     }
 
     header p {
       font-size: 1.2em;
       opacity: 0.85;
       animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.5s;
     }
 
     section {
@@ -56,7 +58,7 @@
       padding: 24px;
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.6s ease;
       opacity: 0;
       transform: translateY(40px);
     }
@@ -87,13 +89,19 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2em; }
+      header p { font-size: 1em; }
+      .card { padding: 16px; }
+    }
   </style>
 </head>
 
 <body>
 
   <header>
-    <h1>Mai Thủy Tiên</h1>
+    <h1>Mini Peace | Mai Thủy Tiên</h1>
     <p>Nhận các loại commissions và hơn thế nữa.</p>
   </header>
 
@@ -115,28 +123,29 @@
   </section>
 
   <footer>
-    © 2025 – Mai Thủy Tiên | Commissions.
+    © 2025 – Mini Peace | Mai Thủy Tiên | Commissions.
   </footer>
 
   <script>
-    // Scroll reveal nhẹ nhàng
-    const cards = document.querySelectorAll('.card');
-    const options = {
-      threshold: 0.1
-    };
+    document.addEventListener("DOMContentLoaded", function () {
+      const cards = document.querySelectorAll('.card');
+      const options = {
+        threshold: 0.1
+      };
 
-    const observer = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
-        }
+      const observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, options);
+
+      cards.forEach(card => {
+        observer.observe(card);
       });
-    }, options);
-
-    cards.forEach(card => {
-      observer.observe(card);
     });
   </script>
 </body>
