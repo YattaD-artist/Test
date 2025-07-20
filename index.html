@@ -114,17 +114,11 @@
       font-weight: 500;
     }
 
-    .award-item button {
-      background-color: #3b82f6;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.9em;
-      transition: background-color 0.2s ease;
-    }
-
+.award-item button {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #3b82f6, #6366f1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
     .award-item button:hover {
       background-color: #2563eb;
     }
@@ -273,8 +267,8 @@
     </div>
 
     <div class="images">
-      <img src="image01.webp" alt="Artwork 1" onclick="zoomImage(this)" />
-      <img src="image02.webp" alt="Artwork 2" onclick="zoomImage(this)" />
+      <img src="image01.webp" alt="Hello" onclick="zoomImage(this)" />
+      <img src="image02.webp" alt="Works" onclick="zoomImage(this)" />
     </div>
 
     <div class="awards">
@@ -291,8 +285,7 @@
   <span>Top 20 "AVA Contest"</span>
   <button id="btn-read-ava">Đọc truyện</button>
 </div>
-    </div>
-
+</div>
     <div class="music-section">
       <h3>Một vài Artwork cho sản phẩm âm nhạc</h3>
       <div class="videos">
@@ -303,13 +296,14 @@
       </div>
     </div>
   </div>
-
     <div class="PunkgaMerch">
       <h3>T-Shirts collab cùng PunkgaMe</h3>
       <img src="PunkgaMerch01.webp" alt="Artwork 1" onclick="zoomImage(this)" /> <br>
       <img src="PunkgaMerch02.webp" alt="Artwork 2" onclick="zoomImage(this)" /> <br>
       <img src="PunkgaMerch03.webp" alt="Artwork 3" onclick="zoomImage(this)" />
     </div>
+  </div>
+  </div>
   
   <div id="comicViewer" class="comic-viewer" style="display: none;">
     <div class="comic-blur-bg"></div>
@@ -318,15 +312,7 @@
   </div>
 
   <script>
-    let comicPages = [
-  "WOW/01.webp",
-  "WOW/02.webp",
-  "WOW/03.webp",
-  "WOW/04.webp",
-  "WOW/05.webp",
-  "WOW/06.webp"
-];
-
+    let comicPages = [];
     let currentPage = 0;
     const viewer = document.getElementById("comicViewer");
     const deck = document.getElementById("comicDeck");
