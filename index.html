@@ -22,10 +22,10 @@
       font-family: 'Segoe UI', sans-serif;
       color: #333;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       text-align: center;
-      padding: 40px;
+      padding: 40px 20px 20px;
     }
 
     .content {
@@ -77,9 +77,25 @@
       transform: scale(1.2);
     }
 
+    .images {
+      margin-top: 2em;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .images img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 280px;
+    }
+
     @media (max-width: 600px) {
       body {
-        padding: 20px;
+        padding: 20px 10px 10px;
       }
 
       .content {
@@ -99,6 +115,11 @@
       .icons a {
         font-size: 1.3em;
       }
+
+      .images img {
+        width: 100%;
+        max-width: 300px;
+      }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -114,6 +135,11 @@
       <a href="https://www.instagram.com/minipeace2001/" title="Instagram"><i class="fab fa-instagram"></i></a>
       <a href="https://www.behance.net/maithuytien" title="Behance"><i class="fab fa-behance"></i></a>
       <a href="https://www.youtube.com/playlist?list=PLR5fl78Q7K1RJs1C-68pNzut2mKCL2Nod" title="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <div class="images">
+      <img src="image01.webp" alt="Artwork 1" />
+      <img src="image02.webp" alt="Artwork 2" />
     </div>
   </div>
 </body>
