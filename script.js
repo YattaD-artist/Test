@@ -1,4 +1,3 @@
-// OK CHƯA?
 document.addEventListener("DOMContentLoaded", () => {
   let comicPages = [];
   let currentPage = 0;
