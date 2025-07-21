@@ -17,6 +17,18 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     observer.observe(target);
   }
+  
+window.copyEmail = function(element) {
+  const email = "ttien39169@gmail.com";
+  navigator.clipboard.writeText(email).then(() => {
+    element.classList.add("show-note");
+    setTimeout(() => {
+      element.classList.remove("show-note");
+    }, 2000);
+  }).catch(err => {
+    console.error("Clipboard error:", err);
+  });
+};
 
   window.addEventListener("scroll", () => {
   const floating = document.querySelector(".floating-icons");
