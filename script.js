@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const viewer = document.getElementById("comicViewer");
   const deck = document.getElementById("comicDeck");
   const audio = document.getElementById("kaia-audio");
+  const wowAudio = document.getElementById("wow-audio"); // ✅ Thêm dòng này
 
   function renderDeck(direction = null) {
     const prevImgs = Array.from(deck.querySelectorAll("img"));
@@ -85,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function closeComicGallery() {
     viewer.style.display = "none";
     fadeOutAudio(audio);
+    fadeOutAudio(wowAudio); // ✅ Tắt luôn nhạc WOW khi đóng
   }
 
   document.querySelector(".close-btn").addEventListener("click", closeComicGallery);
@@ -142,7 +144,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ✅ BUTTON EVENTS
   document.getElementById("btn-read-wow").addEventListener("click", () => {
-    fadeOutAudio(audio);
+    fadeOutAudio(audio);      // Tắt nhạc KAIA
+    fadeOutAudio(wowAudio);   // Đảm bảo không bị lặp
+    if (wowAudio) {
+      wowAudio.volume = 1.0;
+      wowAudio.play().catch(err => console.warn("WOW audio error:", err));
+    }
     comicPages = [
       "WOW/01.webp", "WOW/02.webp", "WOW/03.webp",
       "WOW/04.webp", "WOW/05.webp", "WOW/06.webp"
@@ -151,19 +158,21 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("btn-read-kaia").addEventListener("click", () => {
+    fadeOutAudio(wowAudio);   // Tắt nhạc WOW
+    if (audio) {
+      audio.volume = 1.0;
+      audio.play().catch(err => console.warn("KAIA audio error:", err));
+    }
     comicPages = [
       "KAYA/01.webp", "KAYA/02.webp", "KAYA/03.webp",
       "KAYA/04.webp", "KAYA/05.webp"
     ];
     openComicGallery();
-    if (audio) {
-      audio.volume = 1.0;
-      audio.play().catch(err => console.warn("Audio error:", err));
-    }
   });
 
   document.getElementById("btn-read-ava").addEventListener("click", () => {
     fadeOutAudio(audio);
+    fadeOutAudio(wowAudio); // ✅ Đảm bảo tắt luôn nhạc khác
     comicPages = [
       "AVA/01.webp", "AVA/02.webp", "AVA/03.webp", "AVA/04.webp",
       "AVA/05.webp", "AVA/06.webp", "AVA/07.webp", "AVA/08.webp",
