@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const viewer = document.getElementById("comicViewer");
   const deck = document.getElementById("comicDeck");
   const audio = document.getElementById("kaia-audio");
-  const wowAudio = document.getElementById("wow-audio"); // ✅ Thêm dòng này
+  const wowAudio = document.getElementById("wow-audio");
 
   function renderDeck(direction = null) {
     const prevImgs = Array.from(deck.querySelectorAll("img"));
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (target) observer.observe(target);
 });
 
-  // ✅ PHÓNG TO ẢNH
+  // PHÓNG TO ẢNH
   window.zoomImage = function(img) {
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function closeComicGallery() {
     viewer.style.display = "none";
     fadeOutAudio(audio);
-    fadeOutAudio(wowAudio); // ✅ Tắt luôn nhạc WOW khi đóng
+    fadeOutAudio(wowAudio); 
   }
 
   document.querySelector(".close-btn").addEventListener("click", closeComicGallery);
@@ -162,8 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ✅ BUTTON EVENTS
   document.getElementById("btn-read-wow").addEventListener("click", () => {
-    fadeOutAudio(audio);      // Tắt nhạc KAIA
-    fadeOutAudio(wowAudio);   // Đảm bảo không bị lặp
+    fadeOutAudio(audio);     
+    fadeOutAudio(wowAudio);   
     if (wowAudio) {
       wowAudio.volume = 1.0;
       wowAudio.play().catch(err => console.warn("WOW audio error:", err));
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("btn-read-kaia").addEventListener("click", () => {
-    fadeOutAudio(wowAudio);   // Tắt nhạc WOW
+    fadeOutAudio(wowAudio);  
     if (audio) {
       audio.volume = 1.0;
       audio.play().catch(err => console.warn("KAIA audio error:", err));
