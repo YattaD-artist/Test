@@ -2,6 +2,7 @@ let comicPages = [];
 let currentPage = 0;
 const viewer = document.getElementById("comicViewer");
 const deck = document.getElementById("comicDeck");
+const audio = document.getElementById("kaia-audio"); // Nhạc nền Kaia
 
 function renderDeck(direction = null) {
   const prevImgs = Array.from(deck.querySelectorAll("img"));
@@ -43,6 +44,7 @@ function openComicGallery() {
 
 function closeComicGallery() {
   viewer.style.display = "none";
+  fadeOutAudio(audio); // Nhạc fade out khi đóng viewer
 }
 
 function handleClick(e) {
@@ -115,7 +117,26 @@ function zoomImage(img) {
 
 const preload = new Image();
 preload.src = comicPages[0];
+
+// 🎧 Fade out nhạc khi tắt hoặc chuyển truyện
+function fadeOutAudio(audioEl) {
+  if (!audioEl || audioEl.paused) return;
+  let vol = audioEl.volume;
+  const fade = setInterval(() => {
+    if (vol > 0.05) {
+      vol -= 0.05;
+      audioEl.volume = vol;
+    } else {
+      clearInterval(fade);
+      audioEl.pause();
+      audioEl.currentTime = 0;
+      audioEl.volume = 1.0;
+    }
+  }, 40); // 0.8s mờ dần
+}
+
 document.getElementById("btn-read-wow").addEventListener("click", () => {
+  fadeOutAudio(audio); // Dừng nhạc Kaia nếu có
   comicPages = [
     "WOW/01.webp", "WOW/02.webp", "WOW/03.webp",
     "WOW/04.webp", "WOW/05.webp", "WOW/06.webp"
@@ -129,9 +150,11 @@ document.getElementById("btn-read-kaia").addEventListener("click", () => {
     "KAYA/04.webp", "KAYA/05.webp"
   ];
   openComicGallery();
+  if (audio) audio.play().catch(() => {});
 });
 
 document.getElementById("btn-read-ava").addEventListener("click", () => {
+  fadeOutAudio(audio); // Dừng nhạc Kaia nếu có
   comicPages = [
     "AVA/01.webp", "AVA/02.webp", "AVA/03.webp", "AVA/04.webp",
     "AVA/05.webp", "AVA/06.webp", "AVA/07.webp", "AVA/08.webp",
