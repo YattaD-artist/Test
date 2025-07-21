@@ -53,7 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
     viewer.style.display = "none";
     fadeOutAudio(audio);
   }
-
+  
+document.querySelector(".close-btn").addEventListener("click", closeComicGallery);
+  
   function handleClick(e) {
     if (e.target === viewer || e.target.classList.contains('comic-blur-bg')) {
       closeComicGallery();
