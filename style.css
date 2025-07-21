@@ -97,7 +97,7 @@ p {
   position: fixed;
   z-index: 9999;
   height: auto;
-  max-height: calc(100vh - 100px); /* đảm bảo không che icon */
+  max-height: calc(100vh * 2 / 3);
   pointer-events: none;
   opacity: 0.95;
   transition: opacity 0.3s ease;
