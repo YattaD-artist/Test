@@ -131,6 +131,7 @@ p {
 }
 
 .images {
+ transition: margin-top 0.3s ease;
   margin-top: 60vh;
   display: flex;
   justify-content: center;
