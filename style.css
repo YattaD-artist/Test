@@ -258,7 +258,7 @@ iframe {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  font-size: 28px;
+  font-size: 32px;
   z-index: 999;
   opacity: 0;
   pointer-events: none;
