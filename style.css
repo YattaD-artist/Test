@@ -93,6 +93,27 @@ p {
   letter-spacing: 0.5px;
 }
 
+.side-image {
+  position: fixed;
+  bottom: 0;
+  z-index: 9999;
+  height: auto;
+  max-height: 80vh; /* Hoặc tuỳ bạn muốn ảnh cao bao nhiêu */
+  pointer-events: none; /* Đảm bảo không cản trở click các thành phần khác */
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+}
+
+/* Ảnh bên trái */
+.side-image.left {
+  left: 40;
+}
+
+/* Ảnh bên phải */
+.side-image.right {
+  right: -40;
+}
+
 .images {
   margin-top: 2em;
   display: flex;
