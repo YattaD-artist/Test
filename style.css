@@ -144,7 +144,10 @@ p {
 
 .upz-section {
   margin-top: 60px;
-  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
 }
 
 .upz-wrapper {
@@ -152,6 +155,7 @@ p {
   width: 560px;
   height: auto;
 }
+
 
 .upz-main {
   width: 560px;
