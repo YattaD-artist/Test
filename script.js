@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 // Mới
-  document.addEventListener("DOMContentLoaded", () => {
   const target = document.querySelector('#portfolio-header');
   const floatingIcons = document.querySelector('.floating-icons');
 
