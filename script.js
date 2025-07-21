@@ -5,31 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const deck = document.getElementById("comicDeck");
   const audio = document.getElementById("kaia-audio");
   const wowAudio = document.getElementById("wow-audio");
-
-  function renderDeck(direction = null) {
-    const prevImgs = Array.from(deck.querySelectorAll("img"));
-    const outgoing = prevImgs.find(img => img.classList.contains("active"));
-    if (direction && outgoing) {
-      outgoing.classList.remove("active");
-      outgoing.classList.add(direction === "left" ? "slide-out-left" : "slide-out-right");
-    }
-    updateDeck();
-  }
-
-  function updateDeck() {
-    deck.innerHTML = "";
-    comicPages.forEach((src, i) => {
-      if (i < currentPage - 1 || i > currentPage + 1) return;
-      const img = document.createElement("img");
-      img.src = src;
-      img.alt = `Page ${i + 1}`;
-      img.className = i === currentPage ? "active" : i === currentPage - 1 ? "left" : "right";
-      deck.appendChild(img);
-    });
-  }
-
   const target = document.querySelector('#portfolio-header');
   const floatingIcons = document.querySelector('.floating-icons');
+
   if (target && floatingIcons) {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -72,6 +50,28 @@ document.addEventListener("DOMContentLoaded", () => {
     overlay.addEventListener('click', () => overlay.remove());
   };
 
+  function renderDeck(direction = null) {
+    const prevImgs = Array.from(deck.querySelectorAll("img"));
+    const outgoing = prevImgs.find(img => img.classList.contains("active"));
+    if (direction && outgoing) {
+      outgoing.classList.remove("active");
+      outgoing.classList.add(direction === "left" ? "slide-out-left" : "slide-out-right");
+    }
+    updateDeck();
+  }
+
+  function updateDeck() {
+    deck.innerHTML = "";
+    comicPages.forEach((src, i) => {
+      if (i < currentPage - 1 || i > currentPage + 1) return;
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = `Page ${i + 1}`;
+      img.className = i === currentPage ? "active" : i === currentPage - 1 ? "left" : "right";
+      deck.appendChild(img);
+    });
+  }
+
   function openComicGallery() {
     currentPage = 0;
     viewer.style.display = "flex";
@@ -97,10 +97,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function closeComicGallery() {
     viewer.style.display = "none";
     fadeOutAudio(audio);
-    fadeOutAudio(wowAudio); 
+    fadeOutAudio(wowAudio);
   }
 
   document.querySelector(".close-btn").addEventListener("click", closeComicGallery);
+
+  if (viewer) {
+    viewer.addEventListener("click", handleClick);
+  }
 
   function handleClick(e) {
     if (e.target === viewer || e.target.classList.contains('comic-blur-bg')) {
@@ -117,8 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
       renderDeck("left");
     }
   }
-
-  viewer.addEventListener("click", handleClick);
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight" && currentPage < comicPages.length - 1) {
@@ -153,8 +155,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }, false);
 
   document.getElementById("btn-read-wow").addEventListener("click", () => {
-    fadeOutAudio(audio);     
-    fadeOutAudio(wowAudio);   
+    fadeOutAudio(audio);
+    fadeOutAudio(wowAudio);
     if (wowAudio) {
       wowAudio.volume = 1.0;
       wowAudio.play().catch(err => console.warn("WOW audio error:", err));
@@ -167,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("btn-read-kaia").addEventListener("click", () => {
-    fadeOutAudio(wowAudio);  
+    fadeOutAudio(wowAudio);
     if (audio) {
       audio.volume = 1.0;
       audio.play().catch(err => console.warn("KAIA audio error:", err));
