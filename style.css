@@ -131,6 +131,14 @@ p {
   }
 }
 
+.side-image.left.slide-out-on-icons {
+  animation: slide-out-left 0.6s ease forwards;
+}
+
+.side-image.right.slide-out-on-icons {
+  animation: slide-out-right 0.6s ease forwards;
+}
+
 .images {
  transition: margin-top 0.3s ease;
   margin-top: 60vh;
@@ -419,6 +427,20 @@ iframe {
 @keyframes slide-right {
   0% { transform: scale(1) translateX(0); opacity: 1; }
   100% { transform: scale(0.75) translateX(696px) rotateZ(-12deg); opacity: 0.8; }
+}
+
+@keyframes slide-out-left {
+  to {
+    transform: translateX(-100%) translateY(50px);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-out-right {
+  to {
+    transform: translateX(100%) translateY(50px);
+    opacity: 0;
+  }
 }
 
 img.slide-out-left {
