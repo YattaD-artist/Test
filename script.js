@@ -206,4 +206,26 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
     openComicGallery();
   });
+  
+    // ✅ Preload toàn bộ ảnh truyện (WOW, KAYA, AVA)
+  const preloadImages = [
+    // WOW
+    "WOW/01.webp", "WOW/02.webp", "WOW/03.webp",
+    "WOW/04.webp", "WOW/05.webp", "WOW/06.webp",
+
+    // KAYA
+    "KAYA/01.webp", "KAYA/02.webp", "KAYA/03.webp",
+    "KAYA/04.webp", "KAYA/05.webp",
+
+    // AVA
+    "AVA/01.webp", "AVA/02.webp", "AVA/03.webp", "AVA/04.webp",
+    "AVA/05.webp", "AVA/06.webp", "AVA/07.webp", "AVA/08.webp",
+    "AVA/09.webp", "AVA/10.webp", "AVA/11.webp"
+  ];
+
+  preloadImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+  
 });
