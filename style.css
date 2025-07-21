@@ -95,25 +95,24 @@ p {
 
 .side-image {
   position: fixed;
-  bottom: 0;
   z-index: 9999;
   height: auto;
-  max-height: 80vh;
+  max-height: calc(100vh - 100px); /* đảm bảo không che icon */
   pointer-events: none;
   opacity: 0.95;
   transition: opacity 0.3s ease;
 }
 
-/* Bức bên trái – căn sát mép trái */
+/* Hình bên trái (1.webp) */
 .side-image.left {
-  left: 0;
-  right: auto;
+  left: 10px;
+  bottom: 0px; /* cách đáy 80px */
 }
 
-/* Bức bên phải – căn sát mép phải */
+/* Hình bên phải (2.webp), thấp hơn */
 .side-image.right {
-  right: 0;
-  left: auto;
+  right: 10px;
+  bottom: -40px; /* thấp hơn hình trái */
 }
 
 .side-image {
