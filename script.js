@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // PHÓNG TO ẢNH
-  function zoomImage(img) {
+  // ✅ PHÓNG TO ẢNH
+  window.zoomImage = function(img) {
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
     overlay.style.top = 0;
@@ -57,10 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     overlay.appendChild(zoomedImg);
     document.body.appendChild(overlay);
-    overlay.addEventListener('click', () => {
-      overlay.remove();
-    });
-  }
+    overlay.addEventListener('click', () => overlay.remove());
+  };
 
   function openComicGallery() {
     currentPage = 0;
@@ -121,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // TOUCH SWIPE
+  // ✅ TOUCH SWIPE
   let xDown = null;
 
   viewer.addEventListener("touchstart", evt => {
@@ -142,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
     xDown = null;
   }, false);
 
-  // BUTTON EVENTS
+  // ✅ BUTTON EVENTS
   document.getElementById("btn-read-wow").addEventListener("click", () => {
     fadeOutAudio(audio);
     comicPages = [
@@ -160,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
     openComicGallery();
     if (audio) {
       audio.volume = 1.0;
-      audio.play().catch(err => console.log("Audio error:", err));
+      audio.play().catch(err => console.warn("Audio error:", err));
     }
   });
 
