@@ -17,38 +17,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const minMargin = 32;
   const maxScroll = 300;
 
-  // 📌 Scroll handler – gộp tất cả vào đây
+  // ✅ Gộp toàn bộ xử lý scroll vào MỘT listener duy nhất
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     const progress = Math.min(scrollY / maxScroll, 1);
 
-    // 1. Floating icons hiện khi icons chính biến mất khỏi màn
+    // 1. Floating icons hiện khi icon chính ra khỏi màn hình
     const mainIconsBottom = mainIcons?.getBoundingClientRect().bottom || 0;
-    const shouldShowFloatingIcons = mainIconsBottom < 0;
+    const shouldShowFloatingIcons = mainIconsBottom < 0 || scrollY > 300;
 
     if (shouldShowFloatingIcons) {
       floatingIcons?.classList.add("visible");
+      leftImage?.classList.add("slide-out-on-icons");
+      rightImage?.classList.add("slide-out-on-icons");
     } else {
       floatingIcons?.classList.remove("visible");
+      leftImage?.classList.remove("slide-out-on-icons");
+      rightImage?.classList.remove("slide-out-on-icons");
     }
 
-    // 2. Side images trượt ra ngoài và mờ dần
+    // 2. Side images trượt ra và mờ dần
     const translateX = progress * 200;
     const translateY = progress * 100;
     const opacity = 1 - progress;
 
-    if (leftImage && rightImage) {
-      leftImage.style.transform = `translate(-${translateX}px, ${translateY}px)`;
-      rightImage.style.transform = `translate(${translateX}px, ${translateY}px)`;
-      leftImage.style.opacity = opacity;
-      rightImage.style.opacity = opacity;
-    }
+    leftImage.style.transform = `translate(-${translateX}px, ${translateY}px)`;
+    rightImage.style.transform = `translate(${translateX}px, ${translateY}px)`;
+    leftImage.style.opacity = opacity;
+    rightImage.style.opacity = opacity;
 
-    // 3. Thay đổi margin-top cho wrapper (ảnh chính cuộn lên)
-    if (wrapper) {
-      const newMargin = Math.max(minMargin, maxMargin - scrollY);
-      wrapper.style.marginTop = `${newMargin}px`;
-    }
+    // 3. Thay đổi margin-top của wrapper
+    const newMargin = Math.max(minMargin, maxMargin - scrollY);
+    wrapper.style.marginTop = `${newMargin}px`;
   });
 
   // 📌 Copy email
@@ -59,75 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => element.classList.remove("show-note"), 2000);
     }).catch(err => console.error("Lỗi khi copy email:", err));
   };
-  
-  window.addEventListener("scroll", () => {
-  const floating = document.querySelector(".floating-icons");
-  const mainIcons = document.querySelector(".icons");
 
-  if (!floating || !mainIcons) return;
-
-  const mainIconsBottom = mainIcons.getBoundingClientRect().bottom;
-
-  if (mainIconsBottom < 0) {
-    floating.classList.add("visible");
-  } else {
-    floating.classList.remove("visible");
-  }
-    
-  const floatingIcons = document.querySelector('.floating-icons');
-  const leftImage = document.querySelector('.side-image.left');
-  const rightImage = document.querySelector('.side-image.right');
-
-  const shouldShowIcons = window.scrollY > 300; // tuỳ chỉnh ngưỡng
-
-if (shouldShowIcons) {
-  floatingIcons.classList.add('visible');
-  leftImage?.classList.add('slide-out-on-icons');
-  rightImage?.classList.add('slide-out-on-icons');
-} else {
-  floatingIcons.classList.remove('visible');
-  leftImage?.classList.remove('slide-out-on-icons');
-  rightImage?.classList.remove('slide-out-on-icons');
-}
-});
-  
-  const wrapper = document.querySelector('.images-wrapper');
-  const maxMargin = window.innerHeight * 1.2; // 120vh
-  const minMargin = 32; // 2em ≈ 32px
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-
-    // Tính toán margin mới – giảm dần theo cuộn
-    const newMargin = Math.max(minMargin, maxMargin - scrollY);
-    
-    wrapper.style.marginTop = `${newMargin}px`;
-  });
-  
-  const leftImage = document.querySelector('.side-image.left');
-  const rightImage = document.querySelector('.side-image.right');
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const maxScroll = 300; // đoạn cuộn ảnh bắt đầu trượt ra (điều chỉnh tuỳ ý)
-
-    // Tỷ lệ cuộn 0 → 1
-    const progress = Math.min(scrollY / maxScroll, 1);
-
-    // Di chuyển ảnh ra xa
-    const translateX = progress * 200; // px, trượt ngang
-    const translateY = progress * 100; // trượt thêm dọc nếu muốn
-
-    // Áp dụng transform và opacity
-    leftImage.style.transform = `translate(-${translateX}px, ${translateY}px)`;
-    rightImage.style.transform = `translate(${translateX}px, ${translateY}px)`;
-
-    // Mờ dần
-    const opacity = 1 - progress;
-    leftImage.style.opacity = opacity;
-    rightImage.style.opacity = opacity;
-  });
-  
+  // 📌 Zoom ảnh
   window.zoomImage = function(img) {
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
@@ -151,15 +84,14 @@ if (shouldShowIcons) {
     zoomedImg.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.5)';
     zoomedImg.style.transition = 'transform 0.3s ease';
     zoomedImg.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-      zoomedImg.style.transform = 'scale(1)';
-    }, 10);
+    setTimeout(() => zoomedImg.style.transform = 'scale(1)', 10);
 
     overlay.appendChild(zoomedImg);
     document.body.appendChild(overlay);
     overlay.addEventListener('click', () => overlay.remove());
   };
 
+  // 📚 Logic xem truyện
   function renderDeck(direction = null) {
     const prevImgs = Array.from(deck.querySelectorAll("img"));
     const outgoing = prevImgs.find(img => img.classList.contains("active"));
@@ -264,6 +196,7 @@ if (shouldShowIcons) {
     xDown = null;
   }, false);
 
+  // 📌 Gọi truyện
   document.getElementById("btn-read-wow").addEventListener("click", () => {
     fadeOutAudio(audio);
     fadeOutAudio(wowAudio);
@@ -301,26 +234,16 @@ if (shouldShowIcons) {
     ];
     openComicGallery();
   });
-  
-    // ✅ Preload toàn bộ ảnh truyện (WOW, KAYA, AVA)
+
+  // ✅ Preload
   const preloadImages = [
-    // WOW
-    "WOW/01.webp", "WOW/02.webp", "WOW/03.webp",
-    "WOW/04.webp", "WOW/05.webp", "WOW/06.webp",
-
-    // KAYA
-    "KAYA/01.webp", "KAYA/02.webp", "KAYA/03.webp",
-    "KAYA/04.webp", "KAYA/05.webp",
-
-    // AVA
-    "AVA/01.webp", "AVA/02.webp", "AVA/03.webp", "AVA/04.webp",
-    "AVA/05.webp", "AVA/06.webp", "AVA/07.webp", "AVA/08.webp",
-    "AVA/09.webp", "AVA/10.webp", "AVA/11.webp"
+    "WOW/01.webp", "WOW/02.webp", "WOW/03.webp", "WOW/04.webp", "WOW/05.webp", "WOW/06.webp",
+    "KAYA/01.webp", "KAYA/02.webp", "KAYA/03.webp", "KAYA/04.webp", "KAYA/05.webp",
+    "AVA/01.webp", "AVA/02.webp", "AVA/03.webp", "AVA/04.webp", "AVA/05.webp",
+    "AVA/06.webp", "AVA/07.webp", "AVA/08.webp", "AVA/09.webp", "AVA/10.webp", "AVA/11.webp"
   ];
-
   preloadImages.forEach(src => {
     const img = new Image();
     img.src = src;
   });
-  
 });
