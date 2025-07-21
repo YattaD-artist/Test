@@ -77,6 +77,14 @@ p {
   transform: scale(1.2);
 }
 
+.portfolio-label {
+  font-size: 1.4em;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #1e3a8a;
+  letter-spacing: 0.5px;
+}
+
 .images {
   margin-top: 2em;
   display: flex;
