@@ -1,35 +1,65 @@
 document.addEventListener("DOMContentLoaded", () => {
   let comicPages = [];
   let currentPage = 0;
+
   const viewer = document.getElementById("comicViewer");
   const deck = document.getElementById("comicDeck");
   const audio = document.getElementById("kaia-audio");
   const wowAudio = document.getElementById("wow-audio");
-  const target = document.querySelector('#portfolio-header');
+
   const floatingIcons = document.querySelector('.floating-icons');
+  const leftImage = document.querySelector('.side-image.left');
+  const rightImage = document.querySelector('.side-image.right');
+  const mainIcons = document.querySelector(".icons");
+  const wrapper = document.querySelector('.images-wrapper');
 
-  if (target && floatingIcons) {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        floatingIcons.style.display = entry.isIntersecting ? 'none' : 'flex';
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(target);
-  }
-  
-window.copyEmail = function(element) {
-  const email = "ttien39169@gmail.com";
-  navigator.clipboard.writeText(email).then(() => {
-    element.classList.add("show-note");
-    setTimeout(() => {
-      element.classList.remove("show-note");
-    }, 2000);
-  }).catch(err => {
-    console.error("Lỗi khi copy email:", err);
+  const maxMargin = window.innerHeight * 1.2;
+  const minMargin = 32;
+  const maxScroll = 300;
+
+  // 📌 Scroll handler – gộp tất cả vào đây
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const progress = Math.min(scrollY / maxScroll, 1);
+
+    // 1. Floating icons hiện khi icons chính biến mất khỏi màn
+    const mainIconsBottom = mainIcons?.getBoundingClientRect().bottom || 0;
+    const shouldShowFloatingIcons = mainIconsBottom < 0;
+
+    if (shouldShowFloatingIcons) {
+      floatingIcons?.classList.add("visible");
+    } else {
+      floatingIcons?.classList.remove("visible");
+    }
+
+    // 2. Side images trượt ra ngoài và mờ dần
+    const translateX = progress * 200;
+    const translateY = progress * 100;
+    const opacity = 1 - progress;
+
+    if (leftImage && rightImage) {
+      leftImage.style.transform = `translate(-${translateX}px, ${translateY}px)`;
+      rightImage.style.transform = `translate(${translateX}px, ${translateY}px)`;
+      leftImage.style.opacity = opacity;
+      rightImage.style.opacity = opacity;
+    }
+
+    // 3. Thay đổi margin-top cho wrapper (ảnh chính cuộn lên)
+    if (wrapper) {
+      const newMargin = Math.max(minMargin, maxMargin - scrollY);
+      wrapper.style.marginTop = `${newMargin}px`;
+    }
   });
-};
 
+  // 📌 Copy email
+  window.copyEmail = function(element) {
+    const email = "ttien39169@gmail.com";
+    navigator.clipboard.writeText(email).then(() => {
+      element.classList.add("show-note");
+      setTimeout(() => element.classList.remove("show-note"), 2000);
+    }).catch(err => console.error("Lỗi khi copy email:", err));
+  };
+  
   window.addEventListener("scroll", () => {
   const floating = document.querySelector(".floating-icons");
   const mainIcons = document.querySelector(".icons");
@@ -43,6 +73,22 @@ window.copyEmail = function(element) {
   } else {
     floating.classList.remove("visible");
   }
+    
+  const floatingIcons = document.querySelector('.floating-icons');
+  const leftImage = document.querySelector('.side-image.left');
+  const rightImage = document.querySelector('.side-image.right');
+
+  const shouldShowIcons = window.scrollY > 300; // tuỳ chỉnh ngưỡng
+
+if (shouldShowIcons) {
+  floatingIcons.classList.add('visible');
+  leftImage?.classList.add('slide-out-on-icons');
+  rightImage?.classList.add('slide-out-on-icons');
+} else {
+  floatingIcons.classList.remove('visible');
+  leftImage?.classList.remove('slide-out-on-icons');
+  rightImage?.classList.remove('slide-out-on-icons');
+}
 });
   
   const wrapper = document.querySelector('.images-wrapper');
