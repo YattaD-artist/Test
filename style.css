@@ -99,19 +99,19 @@ p {
   height: auto;
   max-height: calc(100vh * 2 / 3);
   pointer-events: none;
-  opacity: 0.95;
+  opacity: 1;
   transition: opacity 0.3s ease;
 }
 
 /* Hình bên trái (1.webp) */
 .side-image.left {
-  left: 10px;
-  bottom: 0px; /* cách đáy 80px */
+  left: -5px;
+  bottom: -20px; /* cách đáy 80px */
 }
 
 /* Hình bên phải (2.webp), thấp hơn */
 .side-image.right {
-  right: 10px;
+  right: 20px;
   bottom: -40px; /* thấp hơn hình trái */
 }
 
