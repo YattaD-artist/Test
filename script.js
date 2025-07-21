@@ -26,15 +26,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainIconsBottom = mainIcons?.getBoundingClientRect().bottom || 0;
     const shouldShowFloatingIcons = mainIconsBottom < 0 || scrollY > 300;
 
-    if (shouldShowFloatingIcons) {
-      floatingIcons?.classList.add("visible");
-      leftImage?.classList.add("slide-out-on-icons");
-      rightImage?.classList.add("slide-out-on-icons");
-    } else {
-      floatingIcons?.classList.remove("visible");
-      leftImage?.classList.remove("slide-out-on-icons");
-      rightImage?.classList.remove("slide-out-on-icons");
-    }
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const progress = Math.min(scrollY / maxScroll, 1);
+
+  // Di chuyển ảnh ra khi cuộn xuống, và trả lại khi cuộn lên
+  const translateX = progress * 200;
+  const translateY = progress * 100;
+  const opacity = 1 - progress;
+
+  if (leftImage && rightImage) {
+    leftImage.style.transform = `translate(-${translateX}px, ${translateY}px)`;
+    rightImage.style.transform = `translate(${translateX}px, ${translateY}px)`;
+    leftImage.style.opacity = opacity;
+    rightImage.style.opacity = opacity;
+  }
+});
 
     // 2. Side images trượt ra và mờ dần
     const translateX = progress * 200;
