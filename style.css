@@ -325,3 +325,12 @@ img.slide-out-right {
   .images img { width: 100%; max-width: 300px; }
   iframe { height: 200px; }
 }
+.PunkgaMerch img {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.PunkgaMerch img:hover {
+  transform: scale(1.03);
+  filter: brightness(1.05);
+  z-index: 2;
+}
