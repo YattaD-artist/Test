@@ -45,6 +45,19 @@ window.copyEmail = function(element) {
   }
 });
   
+  const wrapper = document.querySelector('.images-wrapper');
+  const maxMargin = window.innerHeight * 1.2; // 120vh
+  const minMargin = 32; // 2em ≈ 32px
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+
+    // Tính toán margin mới – giảm dần theo cuộn
+    const newMargin = Math.max(minMargin, maxMargin - scrollY);
+    
+    wrapper.style.marginTop = `${newMargin}px`;
+  });
+  
   window.zoomImage = function(img) {
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
