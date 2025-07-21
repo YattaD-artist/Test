@@ -249,29 +249,36 @@ iframe {
   font-size: 24px;
 }
 
-/* Icon dọc bên trái, ban đầu ẩn */
+/* Icon dọc bên trái, ẩn ban đầu – hiện ra khi cuộn đủ sâu */
 .floating-icons {
-  display: none;
-  flex-direction: column;
-  gap: 24px;
   position: fixed;
-  left: 24px;
   top: 50%;
+  left: 16px;
   transform: translateY(-50%);
-  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 28px;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.floating-icons.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .floating-icons a {
-  font-size: 32px;
-  color: #000;
+  color: #1e3a8a;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .floating-icons a:hover {
   transform: scale(1.3);
-  color: #f03; /* hoặc màu bạn muốn */
+  color: #f43f5e; /* Hồng đậm */
 }
-
 
 .comic-viewer {
   position: fixed;
