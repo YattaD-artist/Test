@@ -18,6 +18,18 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(target);
   }
   
+  document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (
+      href.startsWith('http') &&
+      !href.includes(window.location.hostname)
+    ) {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+});
+
 window.copyEmail = function(element) {
   const email = "ttien39169@gmail.com";
   navigator.clipboard.writeText(email).then(() => {
