@@ -82,6 +82,7 @@ p {
 
 .icons a:hover {
   transform: scale(1.2);
+  color: #f43f5e; /* Hồng đậm */
 }
 
 .portfolio-label {
