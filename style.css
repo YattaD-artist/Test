@@ -1,3 +1,4 @@
+/* RESET & BASE */
 * {
   margin: 0;
   padding: 0;
@@ -34,7 +35,7 @@ h1 {
   margin-bottom: 0.4em;
   white-space: nowrap;
   overflow: hidden;
-    opacity: 0;
+  opacity: 0;
   transform: translateX(50px);
   animation: slideIn 0.8s ease-out forwards;
 }
@@ -44,9 +45,9 @@ h2 {
   color: #555;
   margin-bottom: 1.2em;
   font-weight: normal;
-    opacity: 0;
+  opacity: 0;
   transform: translateX(-50px);
-  animation: slideIn 0.8s ease-out forwards; 
+  animation: slideIn 0.8s ease-out forwards;
   animation-delay: 0.3s;
 }
 
@@ -82,7 +83,7 @@ p {
 
 .icons a:hover {
   transform: scale(1.2);
-  color: #f43f5e; /* Hồng đậm */
+  color: #f43f5e;
 }
 
 .portfolio-label {
@@ -93,23 +94,22 @@ p {
   letter-spacing: 0.5px;
 }
 
-
 .images {
- transition: margin-top 0.3s ease;
+  transition: margin-top 0.3s ease;
   margin-top: 60px;
   display: flex;
-    flex-direction: column; /* Thêm dòng này để xếp dọc */
-  align-items: center;     /* Căn giữa theo trục ngang */
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
   flex-wrap: wrap;
 }
 
 .images img {
-  width: 720px;
+  width: 100%;
+  max-width: 720px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   cursor: pointer;
-    position: relative;
 }
 
 .PunkgaMerch {
@@ -125,7 +125,8 @@ p {
 }
 
 .PunkgaMerch img {
-  width: 720px;
+  width: 100%;
+  max-width: 720px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   cursor: pointer;
@@ -154,7 +155,6 @@ p {
   z-index: 4;
 }
 
-/* UPZ section fix */
 .upz-section {
   margin-top: 40px;
   display: flex;
@@ -172,14 +172,13 @@ p {
 
 .upz-wrapper {
   position: relative;
-  width: 720px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 720px;
   margin: 0 auto;
 }
 
-.upz-main {
+.upz-main, .upz-hover {
   width: 100%;
-  display: block;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   cursor: pointer;
@@ -187,14 +186,11 @@ p {
 
 .upz-hover {
   position: absolute;
-  top: 0%;
-  left: 0%;
-  width: 100%;
+  top: 0;
+  left: 0;
   height: 100%;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   opacity: 0;
-  transform: translatey(20px);
+  transform: translateY(20px);
   transition: all 0.4s ease;
   pointer-events: none;
   z-index: 5;
@@ -252,16 +248,6 @@ iframe {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Các icon nằm ngang như cũ */
-.icons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 16px;
-  font-size: 24px;
-}
-
-/* Icon dọc bên trái, ẩn ban đầu – hiện ra khi cuộn đủ sâu */
 .floating-icons {
   position: fixed;
   top: 50%;
@@ -289,7 +275,7 @@ iframe {
 
 .floating-icons a:hover {
   transform: scale(1.3);
-  color: #f43f5e; /* Hồng đậm */
+  color: #f43f5e;
 }
 
 .gmail-icon {
@@ -350,8 +336,10 @@ iframe {
 
 .comic-deck img {
   position: absolute;
+  width: 100%;
   max-width: 90vw;
   max-height: 90vh;
+  height: auto;
   transition: transform 0.5s ease-in-out, filter 0.6s ease-in-out, opacity 0.6s ease-in-out;
   transition-delay: 0.05s;
   border-radius: 8px;
@@ -399,8 +387,8 @@ iframe {
   }
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+/* ✅ RESPONSIVE - MOBILE FIRST */
+@media (max-width: 768px) {
   body {
     padding: 20px 10px;
   }
@@ -412,17 +400,40 @@ iframe {
 
   h1 { font-size: 1.2em; }
   h2 { font-size: 1em; }
-  .icons a { font-size: 1.3em; }
-  .images img { width: 100%; max-width: 300px; }
-  iframe { height: 200px; }
+  h3 { font-size: 1.1em; text-align: center; }
+  p { font-size: 0.95em; }
 
-  .upz-wrapper,
+  .icons a { font-size: 1.3em; }
+
+  .images img,
+  .PunkgaMerch img,
   .upz-main,
   .upz-hover {
     width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .PunkgaMerch img:nth-of-type(2),
+  .PunkgaMerch img:nth-of-type(3) {
+    margin-top: 20px;
+    position: static;
+  }
+
+  iframe {
+    height: 200px;
   }
 
   .upz-section h3 {
     text-align: center;
+  }
+
+  .floating-icons {
+    display: none;
+  }
+
+  .award-item button {
+    font-size: 0.8em;
+    padding: 5px 10px;
   }
 }
