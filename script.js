@@ -27,6 +27,24 @@ document.addEventListener("DOMContentLoaded", () => {
       deck.appendChild(img);
     });
   }
+// Mới
+  document.addEventListener("DOMContentLoaded", () => {
+  const target = document.querySelector('#portfolio-header');
+  const floatingIcons = document.querySelector('.floating-icons');
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry.isIntersecting) {
+        floatingIcons.style.display = 'flex';
+      } else {
+        floatingIcons.style.display = 'none';
+      }
+    },
+    { threshold: 0.1 }
+  );
+
+  if (target) observer.observe(target);
+});
 
   // ✅ PHÓNG TO ẢNH
   window.zoomImage = function(img) {
