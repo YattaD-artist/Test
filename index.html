@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MiniPeace</title>
-    <link rel="icon" href="favicon.png?v=2" type="image/png">
+  <link rel="icon" href="favicon.png?v=2" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css">
 </head>
@@ -12,7 +12,9 @@
   <div class="content">
     <h1>MINI PEACE | MAI THỦY TIÊN</h1>
     <h2>FREELANCE 2D ARTIST</h2>
-    <p class="portfolio-label"><strong>Portfolio 2025</strong></p>
+    
+    <!-- Thêm ID để floating-icons hoạt động -->
+    <p id="portfolio-header" class="portfolio-label"><strong>Portfolio 2025</strong></p>
 
     <div class="icons">
       <a href="https://www.facebook.com/minipeace2001" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
@@ -59,7 +61,6 @@
       <img src="PunkgaMerch03.webp" alt="T-Shirt thiết kế 3" onclick="zoomImage(this)">
     </div>
 
-    <!-- ĐÃ ĐƯA PHẦN UPZ VÀO ĐÂY - BÊN TRONG .content -->
     <div class="upz-section">
       <h3>Artwork cho Local Brand UPZ</h3>
       <div class="upz-wrapper">
@@ -67,26 +68,28 @@
         <img src="UPz0.webp" alt="Artwork phụ" class="upz-hover" onclick="zoomImage(this)">
       </div>
     </div>
+  </div> <!-- Kết thúc .content -->
 
-  </div> <!-- ĐÓNG THẺ .content TẠI ĐÂY LÀ CHUẨN -->
-
+  <!-- Trình xem truyện tranh -->
   <div id="comicViewer" class="comic-viewer" style="display: none;">
     <div class="comic-blur-bg"></div>
     <button class="close-btn" onclick="closeComicGallery()">✕</button>
     <div class="comic-deck" id="comicDeck"></div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Âm thanh -->
   <audio id="kaia-audio" src="KAYA/ATCL.mp3" loop preload="auto"></audio>
   <audio id="wow-audio" src="WOW/MTTD.mp3" loop preload="auto"></audio>
-  
-<!-- Bản icon dọc cố định (ẩn ban đầu) -->
-<div class="floating-icons">
-  <a href="https://www.facebook.com/minipeace2001" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-  <a href="https://www.instagram.com/minipeace2001/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-  <a href="https://www.behance.net/maithuytien" aria-label="Behance"><i class="fab fa-behance"></i></a>
-  <a href="https://www.youtube.com/playlist?list=PLR5fl78Q7K1RJs1C-68pNzut2mKCL2Nod" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-</div>
 
+  <!-- Icon nổi bên trái (ẩn ban đầu, sẽ hiện khi cuộn) -->
+  <div class="floating-icons">
+    <a href="https://www.facebook.com/minipeace2001" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com/minipeace2001/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.behance.net/maithuytien" aria-label="Behance"><i class="fab fa-behance"></i></a>
+    <a href="https://www.youtube.com/playlist?list=PLR5fl78Q7K1RJs1C-68pNzut2mKCL2Nod" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <!-- Script cuối để đảm bảo DOM đã có đầy đủ -->
+  <script src="script.js"></script>
 </body>
 </html>
