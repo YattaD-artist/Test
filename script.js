@@ -26,15 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainIconsBottom = mainIcons?.getBoundingClientRect().bottom || 0;
     const shouldShowFloatingIcons = mainIconsBottom < 0 || scrollY > 300;
 
-if (shouldShowIcons) {
-  floatingIcons.classList.add('visible');
-  leftImage?.classList.add('slide-out-on-icons');
-  rightImage?.classList.add('slide-out-on-icons');
-} else {
-  floatingIcons.classList.remove('visible');
-  leftImage?.classList.remove('slide-out-on-icons');
-  rightImage?.classList.remove('slide-out-on-icons');
-}
+    if (shouldShowFloatingIcons) {
+      floatingIcons?.classList.add("visible");
+      leftImage?.classList.add("slide-out-on-icons");
+      rightImage?.classList.add("slide-out-on-icons");
+    } else {
+      floatingIcons?.classList.remove("visible");
+      leftImage?.classList.remove("slide-out-on-icons");
+      rightImage?.classList.remove("slide-out-on-icons");
+    }
 
     // 2. Side images trượt ra và mờ dần
     const translateX = progress * 200;
