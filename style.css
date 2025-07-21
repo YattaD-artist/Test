@@ -287,9 +287,8 @@ iframe {
   color: #f43f5e; /* Hồng đậm */
 }
 
-.icon {
+.gmail-icon {
   position: relative;
-  cursor: pointer;
 }
 
 .copy-note {
@@ -306,7 +305,7 @@ iframe {
   margin-top: 4px;
 }
 
-.icon.show-note .copy-note {
+.gmail-icon.show-note .copy-note {
   opacity: 1;
 }
 
