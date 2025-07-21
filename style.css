@@ -1,9 +1,9 @@
-/* === Copy toàn bộ CSS từ thẻ <style> cũ === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(to right, rgba(255,192,203,0.3), rgba(173,216,230,0.3)),
@@ -18,4 +18,300 @@ body {
   color: #333;
   padding: 40px 20px 20px;
 }
-/* ... (toàn bộ đoạn CSS giữ nguyên, không chỉnh sửa) ... */
+
+.content {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  max-width: 90vw;
+  min-width: 320px;
+}
+
+h1 {
+  font-size: 2em;
+  color: #1e3a8a;
+  margin-bottom: 0.4em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+h2 {
+  font-size: 1.4em;
+  color: #555;
+  margin-bottom: 1.2em;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1e3a8a;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+p {
+  font-size: 1em;
+  margin: 0.4em 0;
+}
+
+.icons {
+  margin-top: 1.5em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.icons a {
+  color: #1e3a8a;
+  font-size: 1.5em;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.icons a:hover {
+  transform: scale(1.2);
+}
+
+.images {
+  margin-top: 2em;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.images img {
+  width: 280px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.PunkgaMerch {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  margin-top: 60px;
+  padding-left: 10px;
+}
+
+.PunkgaMerch img {
+  width: 560px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  margin-top: -240px;
+}
+
+.PunkgaMerch img:first-of-type {
+  margin-top: 0;
+}
+
+.upz-section {
+  margin-top: 60px;
+  padding-left: 10px;
+}
+
+.upz-wrapper {
+  position: relative;
+  width: 560px;
+  height: auto;
+}
+
+.upz-main {
+  width: 560px;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.upz-hover {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 560px;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+.upz-wrapper:hover .upz-hover {
+  opacity: 1;
+  transform: translateX(20px);
+  pointer-events: auto;
+}
+
+.awards, .music-section {
+  margin-top: 2em;
+  text-align: left;
+}
+
+.award-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  background: rgba(255,255,255,0.6);
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+.award-item span {
+  font-weight: 500;
+}
+
+.award-item button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease;
+}
+
+.award-item button:hover {
+  background-color: #2563eb;
+}
+
+.videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+iframe {
+  width: 100%;
+  height: 160px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.comic-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.comic-blur-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  z-index: 0;
+}
+
+.comic-deck {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.comic-deck img {
+  position: absolute;
+  max-width: 90vw;
+  max-height: 90vh;
+  transition: transform 0.5s ease-in-out, filter 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  transition-delay: 0.05s;
+  border-radius: 8px;
+}
+
+.comic-deck img.active {
+  transform: scale(1) translateX(0);
+  filter: brightness(1) contrast(1);
+  z-index: 2;
+}
+
+.comic-deck img.left {
+  transform: scale(0.85) translateX(-696px) rotateY(5deg);
+  filter: brightness(0.6) contrast(0.8);
+  z-index: 1;
+}
+
+.comic-deck img.right {
+  transform: scale(0.85) translateX(696px) rotateY(-5deg);
+  filter: brightness(0.6) contrast(0.8);
+  z-index: 1;
+}
+
+@keyframes slide-left {
+  0% { transform: scale(1) translateX(0); opacity: 1; }
+  100% { transform: scale(0.75) translateX(-696px) rotateZ(12deg); opacity: 0.8; }
+}
+
+@keyframes slide-right {
+  0% { transform: scale(1) translateX(0); opacity: 1; }
+  100% { transform: scale(0.75) translateX(696px) rotateZ(-12deg); opacity: 0.8; }
+}
+
+img.slide-out-left {
+  animation: slide-left 0.4s ease forwards;
+  z-index: 1;
+}
+
+img.slide-out-right {
+  animation: slide-right 0.4s ease forwards;
+  z-index: 1;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2em;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.2);
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 20px 10px;
+  }
+
+  .content {
+    padding: 20px;
+    max-width: 95vw;
+  }
+
+  h1 { font-size: 1.2em; }
+  h2 { font-size: 1em; }
+  .icons a { font-size: 1.3em; }
+  .images img { width: 100%; max-width: 300px; }
+  iframe { height: 200px; }
+}
