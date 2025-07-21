@@ -144,7 +144,7 @@ p {
 
 /* UPZ section fix */
 .upz-section {
-  margin-top: 60px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
