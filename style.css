@@ -98,20 +98,22 @@ p {
   bottom: 0;
   z-index: 9999;
   height: auto;
-  max-height: 80vh; /* Hoặc tuỳ bạn muốn ảnh cao bao nhiêu */
-  pointer-events: none; /* Đảm bảo không cản trở click các thành phần khác */
+  max-height: 80vh;
+  pointer-events: none;
   opacity: 0.95;
   transition: opacity 0.3s ease;
 }
 
-/* Ảnh bên trái */
+/* Bức bên trái – căn sát mép trái */
 .side-image.left {
-  left: 10;
+  left: 0;
+  right: auto;
 }
 
-/* Ảnh bên phải */
+/* Bức bên phải – căn sát mép phải */
 .side-image.right {
-  right: -10;
+  right: 0;
+  left: auto;
 }
 
 .side-image {
@@ -119,6 +121,7 @@ p {
   opacity: 0;
   animation: riseIn 0.8s ease forwards;
   animation-delay: 0.6s;
+  padding-bottom: 60px; /* Đẩy ảnh lên trên phần icons nếu cần */
 }
 
 @keyframes riseIn {
