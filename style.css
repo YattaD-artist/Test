@@ -1,4 +1,4 @@
-* { 
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -122,43 +122,51 @@ p {
 }
 
 .PunkgaMerch img:nth-of-type(1) {
-  z-index: 3; /* Ảnh 01 — trên cùng */
+  z-index: 3;
   margin-top: 0;
 }
 
 .PunkgaMerch img:nth-of-type(2) {
-  z-index: 2; /* Ảnh 02 — giữa */
+  z-index: 2;
   margin-top: -240px;
 }
 
 .PunkgaMerch img:nth-of-type(3) {
-  z-index: 1; /* Ảnh 03 — dưới cùng */
+  z-index: 1;
   margin-top: -240px;
 }
 
 .PunkgaMerch img:hover {
   transform: scale(1.03);
   filter: brightness(1.05);
-  z-index: 4; /* Hover sẽ nổi lên cao hơn các ảnh còn lại */
+  z-index: 4;
 }
 
+/* UPZ section fix */
 .upz-section {
   margin-top: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+}
+
+.upz-section h3 {
+  width: 100%;
+  max-width: 560px;
   text-align: left;
+  margin-bottom: 20px;
 }
 
 .upz-wrapper {
   position: relative;
   width: 560px;
-  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
-
 .upz-main {
-  width: 560px;
+  width: 100%;
   display: block;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -169,7 +177,7 @@ p {
   position: absolute;
   top: 0;
   left: 100%;
-  width: 560px;
+  width: 100%;
   height: 100%;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -330,6 +338,7 @@ img.slide-out-right {
   transform: scale(1.2);
 }
 
+/* Responsive */
 @media (max-width: 600px) {
   body {
     padding: 20px 10px;
@@ -345,13 +354,14 @@ img.slide-out-right {
   .icons a { font-size: 1.3em; }
   .images img { width: 100%; max-width: 300px; }
   iframe { height: 200px; }
-}
-.PunkgaMerch img {
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
 
-.PunkgaMerch img:hover {
-  transform: scale(1.03);
-  filter: brightness(1.05);
-  z-index: 2;
+  .upz-wrapper,
+  .upz-main,
+  .upz-hover {
+    width: 100%;
+  }
+
+  .upz-section h3 {
+    text-align: center;
+  }
 }
