@@ -27,6 +27,41 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // PHÓNG TO ẢNH
+  function zoomImage(img) {
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = '100vw';
+    overlay.style.height = '100vh';
+    overlay.style.background = 'rgba(0, 0, 0, 0.85)';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.cursor = 'zoom-out';
+    overlay.style.zIndex = 9999;
+
+    const zoomedImg = document.createElement('img');
+    zoomedImg.src = img.src;
+    zoomedImg.alt = img.alt;
+    zoomedImg.style.maxWidth = '90vw';
+    zoomedImg.style.maxHeight = '90vh';
+    zoomedImg.style.borderRadius = '12px';
+    zoomedImg.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.5)';
+    zoomedImg.style.transition = 'transform 0.3s ease';
+    zoomedImg.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      zoomedImg.style.transform = 'scale(1)';
+    }, 10);
+
+    overlay.appendChild(zoomedImg);
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', () => {
+      overlay.remove();
+    });
+  }
+
   function openComicGallery() {
     currentPage = 0;
     viewer.style.display = "flex";
@@ -53,9 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
     viewer.style.display = "none";
     fadeOutAudio(audio);
   }
-  
-document.querySelector(".close-btn").addEventListener("click", closeComicGallery);
-  
+
+  document.querySelector(".close-btn").addEventListener("click", closeComicGallery);
+
   function handleClick(e) {
     if (e.target === viewer || e.target.classList.contains('comic-blur-bg')) {
       closeComicGallery();
@@ -73,6 +108,7 @@ document.querySelector(".close-btn").addEventListener("click", closeComicGallery
   }
 
   viewer.addEventListener("click", handleClick);
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight" && currentPage < comicPages.length - 1) {
       currentPage++;
@@ -85,16 +121,14 @@ document.querySelector(".close-btn").addEventListener("click", closeComicGallery
     }
   });
 
-  viewer.addEventListener("touchstart", handleTouchStart, false);
-  viewer.addEventListener("touchend", handleTouchEnd, false);
-
+  // TOUCH SWIPE
   let xDown = null;
 
-  function handleTouchStart(evt) {
+  viewer.addEventListener("touchstart", evt => {
     xDown = evt.touches[0].clientX;
-  }
+  }, false);
 
-  function handleTouchEnd(evt) {
+  viewer.addEventListener("touchend", evt => {
     if (!xDown) return;
     const xUp = evt.changedTouches[0].clientX;
     const xDiff = xDown - xUp;
@@ -106,24 +140,9 @@ document.querySelector(".close-btn").addEventListener("click", closeComicGallery
       renderDeck("right");
     }
     xDown = null;
-  }
+  }, false);
 
-  function zoomImage(img) {
-    const overlay = document.createElement('div');
-    overlay.classList.add('comic-viewer');
-    const zoomed = document.createElement('img');
-    zoomed.src = img.src;
-    zoomed.style.maxWidth = '90vw';
-    zoomed.style.maxHeight = '90vh';
-    zoomed.style.borderRadius = '8px';
-    overlay.appendChild(zoomed);
-    overlay.addEventListener('click', () => document.body.removeChild(overlay));
-    document.body.appendChild(overlay);
-  }
-
-  const preload = new Image();
-  preload.src = comicPages[0];
-
+  // BUTTON EVENTS
   document.getElementById("btn-read-wow").addEventListener("click", () => {
     fadeOutAudio(audio);
     comicPages = [
