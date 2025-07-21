@@ -150,7 +150,10 @@ document.getElementById("btn-read-kaia").addEventListener("click", () => {
     "KAYA/04.webp", "KAYA/05.webp"
   ];
   openComicGallery();
-  if (audio) audio.play().catch(() => {});
+  if (audio) {
+    audio.volume = 1.0;       
+    audio.play().catch(() => {});  
+  }
 });
 
 document.getElementById("btn-read-ava").addEventListener("click", () => {
