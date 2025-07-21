@@ -18,6 +18,21 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(target);
   }
 
+  window.addEventListener("scroll", () => {
+  const floating = document.querySelector(".floating-icons");
+  const mainIcons = document.querySelector(".icons");
+
+  if (!floating || !mainIcons) return;
+
+  const mainIconsBottom = mainIcons.getBoundingClientRect().bottom;
+
+  if (mainIconsBottom < 0) {
+    floating.classList.add("visible");
+  } else {
+    floating.classList.remove("visible");
+  }
+});
+  
   window.zoomImage = function(img) {
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
