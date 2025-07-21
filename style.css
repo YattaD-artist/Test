@@ -240,6 +240,39 @@ iframe {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* Các icon nằm ngang như cũ */
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 16px;
+  font-size: 24px;
+}
+
+/* Icon dọc bên trái, ban đầu ẩn */
+.floating-icons {
+  display: none;
+  flex-direction: column;
+  gap: 24px;
+  position: fixed;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+.floating-icons a {
+  font-size: 32px;
+  color: #000;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.floating-icons a:hover {
+  transform: scale(1.3);
+  color: #f03; /* hoặc màu bạn muốn */
+}
+
+
 .comic-viewer {
   position: fixed;
   top: 0;
