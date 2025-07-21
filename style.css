@@ -34,6 +34,9 @@ h1 {
   margin-bottom: 0.4em;
   white-space: nowrap;
   overflow: hidden;
+    opacity: 0;
+  transform: translateX(50px);
+  animation: slideIn 0.8s ease-out forwards;
 }
 
 h2 {
@@ -41,6 +44,10 @@ h2 {
   color: #555;
   margin-bottom: 1.2em;
   font-weight: normal;
+    opacity: 0;
+  transform: translateX(-50px);
+  animation: slideIn 0.8s ease-out forwards; 
+  animation-delay: 0.3s;
 }
 
 h3 {
@@ -376,6 +383,13 @@ img.slide-out-right {
 
 .close-btn:hover {
   transform: scale(1.2);
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Responsive */
