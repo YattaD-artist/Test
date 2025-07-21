@@ -1,3 +1,4 @@
+// OK CHƯA?
 document.addEventListener("DOMContentLoaded", () => {
   let comicPages = [];
   let currentPage = 0;
@@ -28,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ✅ FLOATING ICONS
   const target = document.querySelector('#portfolio-header');
   const floatingIcons = document.querySelector('.floating-icons');
   if (target && floatingIcons) {
@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(target);
   }
 
-  // ✅ PHÓNG TO ẢNH
   window.zoomImage = function(img) {
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
