@@ -106,12 +106,12 @@ p {
 
 /* Ảnh bên trái */
 .side-image.left {
-  left: 40;
+  left: 10;
 }
 
 /* Ảnh bên phải */
 .side-image.right {
-  right: -40;
+  right: -10;
 }
 
 .side-image {
