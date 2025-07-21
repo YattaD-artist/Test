@@ -27,25 +27,21 @@ document.addEventListener("DOMContentLoaded", () => {
       deck.appendChild(img);
     });
   }
-// Mới
+
+  // ✅ FLOATING ICONS
   const target = document.querySelector('#portfolio-header');
   const floatingIcons = document.querySelector('.floating-icons');
+  if (target && floatingIcons) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        floatingIcons.style.display = entry.isIntersecting ? 'none' : 'flex';
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(target);
+  }
 
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (!entry.isIntersecting) {
-        floatingIcons.style.display = 'flex';
-      } else {
-        floatingIcons.style.display = 'none';
-      }
-    },
-    { threshold: 0.1 }
-  );
-
-  if (target) observer.observe(target);
-});
-
-  // PHÓNG TO ẢNH
+  // ✅ PHÓNG TO ẢNH
   window.zoomImage = function(img) {
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
@@ -138,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ✅ TOUCH SWIPE
   let xDown = null;
 
   viewer.addEventListener("touchstart", evt => {
@@ -159,7 +154,6 @@ document.addEventListener("DOMContentLoaded", () => {
     xDown = null;
   }, false);
 
-  // ✅ BUTTON EVENTS
   document.getElementById("btn-read-wow").addEventListener("click", () => {
     fadeOutAudio(audio);     
     fadeOutAudio(wowAudio);   
@@ -189,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("btn-read-ava").addEventListener("click", () => {
     fadeOutAudio(audio);
-    fadeOutAudio(wowAudio); // ✅ Đảm bảo tắt luôn nhạc khác
+    fadeOutAudio(wowAudio);
     comicPages = [
       "AVA/01.webp", "AVA/02.webp", "AVA/03.webp", "AVA/04.webp",
       "AVA/05.webp", "AVA/06.webp", "AVA/07.webp", "AVA/08.webp",
