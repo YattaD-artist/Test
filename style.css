@@ -107,6 +107,7 @@ p {
   position: relative;
   padding-left: 10px;
 }
+
 .PunkgaMerch h3 {
   margin-top: 60px;
 }
@@ -117,12 +118,28 @@ p {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   cursor: pointer;
   position: relative;
-  z-index: 1;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.PunkgaMerch img:nth-of-type(1) {
+  z-index: 3; /* Ảnh 01 — trên cùng */
+  margin-top: 0;
+}
+
+.PunkgaMerch img:nth-of-type(2) {
+  z-index: 2; /* Ảnh 02 — giữa */
   margin-top: -240px;
 }
 
-.PunkgaMerch img:first-of-type {
-  margin-top: 0;
+.PunkgaMerch img:nth-of-type(3) {
+  z-index: 1; /* Ảnh 03 — dưới cùng */
+  margin-top: -240px;
+}
+
+.PunkgaMerch img:hover {
+  transform: scale(1.03);
+  filter: brightness(1.05);
+  z-index: 4; /* Hover sẽ nổi lên cao hơn các ảnh còn lại */
 }
 
 .upz-section {
