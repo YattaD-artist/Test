@@ -131,7 +131,7 @@ p {
 }
 
 .images {
-  margin-top: 2em;
+  margin-top: 120vh;
   display: flex;
   justify-content: center;
   gap: 20px;
