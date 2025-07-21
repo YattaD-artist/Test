@@ -36,16 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
       rightImage?.classList.remove("slide-out-on-icons");
     }
 
-    // 2. Side images trượt ra và mờ dần
-    const translateX = progress * 200;
-    const translateY = progress * 100;
-    const opacity = 1 - progress;
-
-    leftImage.style.transform = `translate(-${translateX}px, ${translateY}px)`;
-    rightImage.style.transform = `translate(${translateX}px, ${translateY}px)`;
-    leftImage.style.opacity = opacity;
-    rightImage.style.opacity = opacity;
-
     // 3. Thay đổi margin-top của wrapper
     const newMargin = Math.max(minMargin, maxMargin - scrollY);
     wrapper.style.marginTop = `${newMargin}px`;
