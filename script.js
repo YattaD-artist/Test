@@ -58,6 +58,30 @@ window.copyEmail = function(element) {
     wrapper.style.marginTop = `${newMargin}px`;
   });
   
+  const leftImage = document.querySelector('.side-image.left');
+  const rightImage = document.querySelector('.side-image.right');
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const maxScroll = 300; // đoạn cuộn ảnh bắt đầu trượt ra (điều chỉnh tuỳ ý)
+
+    // Tỷ lệ cuộn 0 → 1
+    const progress = Math.min(scrollY / maxScroll, 1);
+
+    // Di chuyển ảnh ra xa
+    const translateX = progress * 200; // px, trượt ngang
+    const translateY = progress * 100; // trượt thêm dọc nếu muốn
+
+    // Áp dụng transform và opacity
+    leftImage.style.transform = `translate(-${translateX}px, ${translateY}px)`;
+    rightImage.style.transform = `translate(${translateX}px, ${translateY}px)`;
+
+    // Mờ dần
+    const opacity = 1 - progress;
+    leftImage.style.opacity = opacity;
+    rightImage.style.opacity = opacity;
+  });
+  
   window.zoomImage = function(img) {
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
