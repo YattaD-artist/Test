@@ -121,6 +121,7 @@ p {
   animation: riseIn 0.8s ease forwards;
   animation-delay: 0.6s;
   padding-bottom: 0px; /* Đẩy ảnh lên trên phần icons nếu cần */
+  transition: transform 0.1s linear, opacity 0.1s linear;
 }
 
 @keyframes riseIn {
