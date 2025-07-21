@@ -26,7 +26,7 @@ window.copyEmail = function(element) {
       element.classList.remove("show-note");
     }, 2000);
   }).catch(err => {
-    console.error("Clipboard error:", err);
+    console.error("Lỗi khi copy email:", err);
   });
 };
 
