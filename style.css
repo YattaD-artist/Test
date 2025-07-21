@@ -98,7 +98,8 @@ p {
  transition: margin-top 0.3s ease;
   margin-top: 60px;
   display: flex;
-  justify-content: center;
+    flex-direction: column; /* Thêm dòng này để xếp dọc */
+  align-items: center;     /* Căn giữa theo trục ngang */
   gap: 20px;
   flex-wrap: wrap;
 }
