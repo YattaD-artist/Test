@@ -18,6 +18,7 @@ body {
   text-align: center;
   color: #333;
   padding: 40px 20px 20px;
+  border: 2px dashed #3879dc;
 }
 
 .content {
