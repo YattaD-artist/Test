@@ -67,57 +67,34 @@ body {
 
 .gold-sparkles {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: 1; /* nằm giữa body và content */
   overflow: hidden;
 }
 
-.gold-sparkles::before,
-.gold-sparkles::after {
-  content: "";
+.sparkle {
   position: absolute;
-  width: 100%;
-  height: 200%; /* Gấp đôi chiều cao để bay */
-  top: 100%;    /* Bắt đầu bên dưới viewport */
-  left: 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-  animation: floatgoldesparkles 30s linear infinite;
-  pointer-events: none;
-  filter: blur(2px);
-  opacity: 0.5;
+  width: 12px;
+  height: 12px;
+  background-color: #fff829; /* vàng chói */
+  border-radius: 50%;        /* ← hình tròn */
+  opacity: 0.6;
+  animation: floatSparkle linear infinite;
+  filter: blur(1px);         /* tạo ánh sáng mờ */
 }
 
-.gold-sparkles::before {
-  background-image:
-    radial-gradient(circle at 10% 90%, rgba(255, 223, 100, 0.4) 0%, transparent 70%),
-    radial-gradient(circle at 30% 85%, rgba(255, 215, 80, 0.35) 0%, transparent 70%),
-    radial-gradient(circle at 50% 80%, rgba(255, 240, 160, 0.3) 0%, transparent 70%),
-    radial-gradient(circle at 70% 95%, rgba(255, 200, 50, 0.3) 0%, transparent 70%),
-    radial-gradient(circle at 90% 88%, rgba(255, 230, 140, 0.28) 0%, transparent 70%);
-}
-
-.gold-sparkles::after {
-  background-image:
-    radial-gradient(circle at 15% 60%, rgba(255, 223, 100, 0.3) 0%, transparent 70%),
-    radial-gradient(circle at 40% 70%, rgba(255, 215, 80, 0.3) 0%, transparent 70%),
-    radial-gradient(circle at 65% 55%, rgba(255, 240, 160, 0.25) 0%, transparent 70%),
-    radial-gradient(circle at 85% 65%, rgba(255, 200, 50, 0.3) 0%, transparent 70%);
-  animation-delay: 15s;
-  opacity: 0.3;
-}
-
-@keyframes floatgoldesparkles {
+@keyframes floatSparkle {
   0% {
-    transform: translateY(0);
+    transform: translateY(0) translateX(0);
     opacity: 0.6;
   }
+  50% {
+    transform: translateY(-50vh) translateX(10px);
+  }
   100% {
-    transform: translateY(-100%);
+    transform: translateY(-100vh) translateX(-10px);
     opacity: 0;
   }
 }
