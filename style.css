@@ -49,7 +49,7 @@ body {
     repeating-linear-gradient(to left, 
       transparent 0 5px, #f0b0e1 5px 25px, transparent 25px 32px),
     repeating-linear-gradient(to top, 
-      transparent 0 5px, #f0b0e1 5px 25px, transparent 25px 32px),
+      transparent 0 5px, #f0b0e1 5px 25px, transparent 25px 32px);
 
   background-repeat: no-repeat;
   background-position: 
