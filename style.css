@@ -22,7 +22,7 @@ body {
 .content {
   position: relative;
   z-index: 2;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
@@ -313,13 +313,14 @@ p {
   color: white;
   border: none;
   padding: 6px 12px;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 0.9em;
+  font-size: 2em;
   transition: background-color 0.2s ease;
 }
 
 .award-item button:hover {
+  transform: scale(1.2);  
   background-color: #f27b84;
 }
 
