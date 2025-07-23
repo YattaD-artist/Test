@@ -78,11 +78,11 @@ body {
   transition: color 0.3s;
 }
 body.dark-mode .theme-toggle {
-  color: #f0e7cd;
+  color: #ecce9b;
 }
 .theme-toggle:hover {
   transform: scale(1.2);
-  color: #f0e7cd;
+  color: #fbc944;
 }
 
 /* Lung la lung linh */
