@@ -94,6 +94,8 @@ h3 {
   margin-bottom: 30px;
   line-height: 1.4;
   text-align: left;
+  animation: slideIn 0.8s ease-out backwards;
+  animation-delay: 0.3s;
 }
 
 p {
@@ -107,11 +109,13 @@ p {
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
+  animation: slideIn 0.8s ease-out backwards;
+  animation-delay: 0.3s;
 }
 
 .icons a {
   color: #1e3a8a;
-  font-size: 1.5em;
+  font-size: 2.5em;
   text-decoration: none;
   transition: transform 0.2s ease;
 }
