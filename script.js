@@ -70,7 +70,7 @@ sparkle.style.height = `${size}px`;
 
 // ✅ Quan trọng: luôn append sparkle
 container.appendChild(sparkle);
-  });
+  }
 
   // 📌 Copy email
   window.copyEmail = function(element) {
