@@ -462,7 +462,12 @@ iframe {
   }
 
   .floating-icons {
-    display: none;
+display: flex; /* hoặc block nếu cần */
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 1000;
   }
 
   .award-item button {
