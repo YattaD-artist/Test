@@ -74,7 +74,7 @@ body {
   font-size: 3.5rem;
   cursor: pointer;
   z-index: 99;
-  color: #fca63f; /* Màu biểu tượng ở chế độ sáng */
+  color: #fbc944; /* Màu biểu tượng ở chế độ sáng */
   transition: color 0.3s;
 }
 body.dark-mode .theme-toggle {
@@ -82,7 +82,10 @@ body.dark-mode .theme-toggle {
 }
 .theme-toggle:hover {
   transform: scale(1.2);
-  color: #fbc944;
+  color: #fca63f;
+}
+body.dark-mode .theme-toggle:hover {
+  color: #362b0f;
 }
 
 /* Lung la lung linh */
