@@ -53,6 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (toggleBtn && themeIcon) {
     const isDarkMode = localStorage.getItem('theme') === 'dark';
     setTheme(isDarkMode);
+    
+toggleBtn.addEventListener('click', () => {
+  const isDark = document.body.classList.toggle('dark-mode');
+  themeIcon.classList.toggle('fa-sun', !isDark);
+  themeIcon.classList.toggle('fa-moon', isDark);
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
 
     // Hide hint when user interacts
     toggleBtn.addEventListener('mouseenter', () => hint?.classList.add('hidden'));
@@ -73,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
     hint.classList.add('hidden');
   }
 });
-
   }
 
   // ===== Scroll effect =====
