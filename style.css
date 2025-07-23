@@ -481,6 +481,12 @@ iframe {
   body {
     padding: 20px 10px;
   }
+  
+  .theme-toggle {
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 1.25rem;
+  }
 
   .content {
     padding: 20px;
