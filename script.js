@@ -40,7 +40,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const newMargin = Math.max(minMargin, maxMargin - scrollY);
     wrapper.style.marginTop = `${newMargin}px`;
   });
+  
+  // Chế độ sáng tối
+   const toggleBtn = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
 
+  // Kiểm tra nếu có lưu trạng thái trước đó
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeIcon.classList.remove('fa-sun');
+    themeIcon.classList.add('fa-moon');
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+
+    // Đổi biểu tượng
+    themeIcon.classList.toggle('fa-sun', !isDark);
+    themeIcon.classList.toggle('fa-moon', isDark);
+
+    // Lưu trạng thái
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
   
   // Lung linh
   const container = document.getElementById("gold-sparkles");
