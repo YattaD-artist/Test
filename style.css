@@ -20,15 +20,30 @@ body {
   padding: 40px 20px 20px;
 }
 
-.content { 
+.content {
+  position: relative;
   background-color: rgba(255, 255, 255, 0.7);
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   max-width: 90vw;
   min-width: 320px;
-  border: 6px dashed #3879dc;
+  overflow: hidden;
 }
+
+/* Viền chỉ khâu được tạo bằng pseudo-element */
+.content::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 2px dashed #3879dc;
+  border-radius: 10px;
+  pointer-events: none;
+}
+
 
 h1 {
   font-size: 2em;
