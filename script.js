@@ -42,26 +42,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
     // Chế độ sáng tối
-  document.addEventListener('DOMContentLoaded', () => {
-  const toggleBtn = document.getElementById('theme-toggle');
-  const themeIcon = document.getElementById('theme-icon');
-  if (!toggleBtn || !themeIcon) return; // Ngăn lỗi nếu chưa có phần tử
-  if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-mode');
-    themeIcon.classList.remove('fa-sun');
-    themeIcon.classList.add('fa-moon');   // Kiểm tra nếu có lưu trạng thái trước đó
-  }
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    const isDark = document.body.classList.contains('dark-mode');
-    // Đổi biểu tượng
-    themeIcon.classList.toggle('fa-sun', !isDark);
-    themeIcon.classList.toggle('fa-moon', isDark);
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');     // Lưu trạng thái
-  });
+const toggleBtn = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+if (!toggleBtn || !themeIcon) return;
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark-mode');
+  themeIcon.classList.remove('fa-sun');
+  themeIcon.classList.add('fa-moon');// Kiểm tra nếu có lưu trạng thái trước đó
+}
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
+  themeIcon.classList.toggle('fa-sun', !isDark);  // Đổi biểu tượng
+  themeIcon.classList.toggle('fa-moon', isDark);
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');  // Lưu trạng thái
 });
 
-  
   // Lung linh
   const container = document.getElementById("gold-sparkles");
 const sparkleCount = 30;
