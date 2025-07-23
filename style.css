@@ -90,6 +90,7 @@ body.dark-mode .theme-toggle:hover {
   right: calc(5rem + 60px); /* cách nút toggle một đoạn */
   font-size: 1rem;
   color: #0c2f4d;
+  opacity: 0.5;
   background: rgba(255, 255, 255, 0.6);
   padding: 6px 12px;
   border-radius: 8px;
@@ -106,6 +107,14 @@ body.dark-mode .theme-hint {
 .theme-hint.hidden {
   opacity: 0;/* Ẩn khi cuộn */
 }
+#themeHint {
+  transition: opacity 0.3s ease;
+}
+#themeHint.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 
 /* Lung la lung linh */
 .gold-sparkles {
