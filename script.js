@@ -16,6 +16,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const maxMargin = window.innerHeight * 1.2;
   const minMargin = 32;
   const maxScroll = 300;
+  
+  // Lung linh
+  const container = document.getElementById("gold-sparkles");
+const sparkleCount = 30;
+
+for (let i = 0; i < sparkleCount; i++) {
+  const sparkle = document.createElement("div");
+  sparkle.classList.add("sparkle");
+
+  // Random vị trí và animation delay
+  sparkle.style.left = `${Math.random() * 100}%`;
+  sparkle.style.bottom = `-10px`;
+  sparkle.style.animationDuration = `${10 + Math.random() * 10}s`;
+  sparkle.style.animationDelay = `${Math.random() * 20}s`;
+
+  // Optionally: random size
+  const size = 6 + Math.random() * 8;
+  sparkle.style.width = `${size}px`;
+  sparkle.style.height = `${size}px`;
+
+  container.appendChild(sparkle);
+}
 
   // ✅ Gộp toàn bộ xử lý scroll vào MỘT listener duy nhất
   window.addEventListener('scroll', () => {
