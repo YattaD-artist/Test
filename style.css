@@ -43,13 +43,13 @@ body {
 
   background-image: 
     repeating-linear-gradient(to right, 
-      transparent 0 4px, #3879dc 4px 20px, transparent 20px 30px),
+      transparent 0 5px, #e290ce 5px 25px, transparent 25px 32px),
     repeating-linear-gradient(to bottom, 
-      transparent 0 4px, #3879dc 4px 20px, transparent 20px 30px),
+      transparent 0 5px, #e290ce 5px 25px, transparent 25px 32px),
     repeating-linear-gradient(to left, 
-      transparent 0 4px, #3879dc 4px 20px, transparent 20px 30px),
+      transparent 0 5px, #e290ce 5px 25px, transparent 25px 32px),
     repeating-linear-gradient(to top, 
-      transparent 0 4px, #3879dc 4px 20px, transparent 20px 30px);
+      transparent 0 5px, #e290ce 5px 25px, transparent 25px 32px),
 
   background-repeat: no-repeat;
   background-position: 
