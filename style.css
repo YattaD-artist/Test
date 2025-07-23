@@ -78,7 +78,7 @@ body {
   transition: color 0.3s;
 }
 body.dark-mode .theme-toggle {
-  color: #ecce9b;
+  color: #fffae0;
 }
 .theme-toggle:hover {
   transform: scale(1.2);
