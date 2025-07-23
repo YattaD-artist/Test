@@ -75,7 +75,7 @@ body {
   cursor: pointer;
   z-index: 99;
   color: #fbc944; /* Màu biểu tượng ở chế độ sáng */
-  transition: color 0.3s;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 body.dark-mode .theme-toggle {
   color: #fffae0;
