@@ -20,18 +20,6 @@ body {
   padding: 40px 20px 20px;
 }
 
-.content {
-  position: relative;
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  max-width: 90vw;
-  min-width: 320px;
-  overflow: hidden;
-}
-
-/* Viền chỉ khâu song song thủ công */
 .content::before {
   content: "";
   position: absolute;
@@ -42,35 +30,25 @@ body {
   border-radius: 10px;
   pointer-events: none;
 
-  /* Tạo đường chỉ đôi thủ công bằng gradient */
   background-image: 
     repeating-linear-gradient(to right, 
-      transparent 0 10px, 
-      #3879dc 10px 16px, 
-      transparent 16px 30px),   /* top */
+      transparent 0 4px, #3879dc 4px 20px, transparent 20px 30px),
     repeating-linear-gradient(to bottom, 
-      transparent 0 10px, 
-      #3879dc 10px 16px, 
-      transparent 16px 30px),  /* right */
+      transparent 0 4px, #3879dc 4px 20px, transparent 20px 30px),
     repeating-linear-gradient(to left, 
-      transparent 0 10px, 
-      #3879dc 10px 16px, 
-      transparent 16px 30px),   /* bottom */
+      transparent 0 4px, #3879dc 4px 20px, transparent 20px 30px),
     repeating-linear-gradient(to top, 
-      transparent 0 10px, 
-      #3879dc 10px 16px, 
-      transparent 16px 30px);   /* left */
+      transparent 0 4px, #3879dc 4px 20px, transparent 20px 30px);
 
   background-repeat: no-repeat;
   background-position: 
     top left, top right, bottom right, bottom left;
   background-size: 
-    calc(100% - 20px) 2px,    /* top */
-    2px calc(100% - 20px),    /* right */
-    calc(100% - 20px) 2px,    /* bottom */
-    2px calc(100% - 20px);    /* left */
+    calc(100% - 20px) 6px,    /* top */
+    6px calc(100% - 20px),    /* right */
+    calc(100% - 20px) 6px,    /* bottom */
+    6px calc(100% - 20px);    /* left */
 
-  /* Hiệu ứng lệch tay nhẹ và chiều sâu */
   transform: rotateZ(-0.1deg);
   filter: drop-shadow(0 0 0.7px rgba(0, 0, 0, 0.25));
 }
