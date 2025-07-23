@@ -190,20 +190,18 @@ p {
   z-index: 4;
 }
 
-.upz-section {
-  margin-top: 40px;
+.upz {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
+  align-items: flex-start;
+  position: relative;
+  padding-left: 10px;
 }
 
-.upz-section h3 {
-  width: 100%;
-  max-width: 560px;
-  text-align: left;
-  margin-bottom: 20px;
+.upz h3 {
+  margin-top: 60px;
 }
+
 
 .upz-wrapper {
   position: relative;
