@@ -583,9 +583,11 @@ font-size: 1.3em;
 /* === DARK MODE === */
 body.dark-mode {
   background: linear-gradient(to right, #0f172a, #1e293b); /* nền đêm xanh đậm */
+  repeating-linear-gradient(90deg, #dbeafe 0 20px, #bfdbfe 20px 40px),
+              repeating-linear-gradient(0deg, #dbeafe 0 20px, #bfdbfe 20px 40px);
+  background-blend-mode: Multiply;
   color: #e2e8f0; /* màu chữ sáng */
 }
-
 /* Khi dark-mode: hiển thị lại */
 body.dark-mode #gold-sparkles {
   display: block;
