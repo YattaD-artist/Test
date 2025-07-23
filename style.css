@@ -528,7 +528,7 @@ display: flex; /* hoặc block nếu cần */
     position: fixed;
     top: 50%;
     left: 0;
-height: 200px;
+font-size: 1.3em; 
     transform: translateY(-50%);
     z-index: 1000;
   }
