@@ -84,6 +84,7 @@ body.dark-mode .theme-toggle:hover {
   color: #f8c900;
 }
 .theme-hint { /* Gợi ý bên cạnh nút chế độ */
+  font-family: 'Oswald', sans-serif;
   position: fixed;
   top: 10rem;
   right: calc(5rem + 60px); /* cách nút toggle một đoạn */
