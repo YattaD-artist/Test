@@ -16,6 +16,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const maxMargin = window.innerHeight * 1.2;
   const minMargin = 32;
   const maxScroll = 300;
+
+  // ✅ Gộp toàn bộ xử lý scroll vào MỘT listener duy nhất
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const progress = Math.min(scrollY / maxScroll, 1);
+
+    // 1. Floating icons hiện khi icon chính ra khỏi màn hình
+    const mainIconsBottom = mainIcons?.getBoundingClientRect().bottom || 0;
+    const shouldShowFloatingIcons = mainIconsBottom < 0 || scrollY > 300;
+
+    if (shouldShowFloatingIcons) {
+      floatingIcons?.classList.add("visible");
+      leftImage?.classList.add("slide-out-on-icons");
+      rightImage?.classList.add("slide-out-on-icons");
+    } else {
+      floatingIcons?.classList.remove("visible");
+      leftImage?.classList.remove("slide-out-on-icons");
+      rightImage?.classList.remove("slide-out-on-icons");
+    }
+
+    // 3. Thay đổi margin-top của wrapper
+    const newMargin = Math.max(minMargin, maxMargin - scrollY);
+    wrapper.style.marginTop = `${newMargin}px`;
+  });
+
   
   // Lung linh
   const container = document.getElementById("gold-sparkles");
@@ -45,29 +70,6 @@ sparkle.style.height = `${size}px`;
 
 // ✅ Quan trọng: luôn append sparkle
 container.appendChild(sparkle);
-
-  // ✅ Gộp toàn bộ xử lý scroll vào MỘT listener duy nhất
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const progress = Math.min(scrollY / maxScroll, 1);
-
-    // 1. Floating icons hiện khi icon chính ra khỏi màn hình
-    const mainIconsBottom = mainIcons?.getBoundingClientRect().bottom || 0;
-    const shouldShowFloatingIcons = mainIconsBottom < 0 || scrollY > 300;
-
-    if (shouldShowFloatingIcons) {
-      floatingIcons?.classList.add("visible");
-      leftImage?.classList.add("slide-out-on-icons");
-      rightImage?.classList.add("slide-out-on-icons");
-    } else {
-      floatingIcons?.classList.remove("visible");
-      leftImage?.classList.remove("slide-out-on-icons");
-      rightImage?.classList.remove("slide-out-on-icons");
-    }
-
-    // 3. Thay đổi margin-top của wrapper
-    const newMargin = Math.max(minMargin, maxMargin - scrollY);
-    wrapper.style.marginTop = `${newMargin}px`;
   });
 
   // 📌 Copy email
