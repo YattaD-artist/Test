@@ -67,20 +67,20 @@ body {
 /* Vị trí Nút chế độ sáng tối */
 .theme-toggle {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: 15rem;
+  right: 5rem;
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 3.5rem;
   cursor: pointer;
-  z-index: 1000;
-  color: #333; /* Màu biểu tượng ở chế độ sáng */
+  z-index: 99;
+  color: #1e3a8a; /* Màu biểu tượng ở chế độ sáng */
   transition: color 0.3s;
 }
 
 /* Khi ở chế độ tối */
 body.dark-mode .theme-toggle {
-  color: #f5f5f5;
+  color: #f43f5e;
 }
 
 /* Lung la lung linh */
