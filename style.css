@@ -64,7 +64,26 @@ body {
   transform: rotateZ(-0.1deg);
   filter: drop-shadow(0 0 0.7px rgba(0, 0, 0, 0.5));
 }
+/* Vị trí Nút chế độ sáng tối */
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1000;
+  color: #333; /* Màu biểu tượng ở chế độ sáng */
+  transition: color 0.3s;
+}
 
+/* Khi ở chế độ tối */
+body.dark-mode .theme-toggle {
+  color: #f5f5f5;
+}
+
+/* Lung la lung linh */
 .gold-sparkles {
   position: fixed;
   top: 0; left: 0;
