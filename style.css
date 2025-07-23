@@ -107,6 +107,44 @@ body.dark-mode .theme-hint {
   opacity: 0;/* Ẩn khi cuộn */
 }
 
+/* Lung la lung linh */
+.gold-sparkles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  display: none;
+}
+
+#gold-sparkles {
+  display: none;
+}
+
+.sparkle {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #f8c365;
+  background-blend-mode: overlay;
+  border-radius: 50%;
+  opacity: 1;
+  animation: floatSparkle linear infinite;
+  filter: blur(1px);
+}
+.sparkle.faint {
+  opacity: 0.7;
+  filter: blur(1.2px) brightness(1.1);
+  transform: scale(0.8);
+}
+
+@keyframes floatSparkle {
+  0%   { transform: translateY(0) translateX(0); opacity: 0.7; }
+  50%  { transform: translateY(-50vh) translateX(10px); }
+  100% { transform: translateY(-100vh) translateX(-10px); opacity: 0; }
+}
+
 h1 {
   font-size: 2em;
   color: #0c2f4d;
@@ -539,38 +577,9 @@ body.dark-mode {
   color: #e2e8f0; /* màu chữ sáng */
 }
 
-/* Lung la lung linh */
-.gold-sparkles {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-}
-}
-
-.sparkle {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background-color: #f8c365;
-  background-blend-mode: overlay;
-  border-radius: 50%;
-  opacity: 1;
-  animation: floatSparkle linear infinite;
-  filter: blur(1px);
-}
-.sparkle.faint {
-  opacity: 0.7;
-  filter: blur(1.2px) brightness(1.1);
-  transform: scale(0.8);
-}
-
-@keyframes floatSparkle {
-  0%   { transform: translateY(0) translateX(0); opacity: 0.7; }
-  50%  { transform: translateY(-50vh) translateX(10px); }
-  100% { transform: translateY(-100vh) translateX(-10px); opacity: 0; }
+/* Khi dark-mode: hiển thị lại */
+body.dark-mode #gold-sparkles {
+  display: block;
 }
 
 /* content box */
