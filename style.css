@@ -82,10 +82,10 @@ body.dark-mode .theme-toggle {
 }
 .theme-toggle:hover {
   transform: scale(1.2);
-  color: #fca63f;
+  color: #ec591e;
 }
 body.dark-mode .theme-toggle:hover {
-  color: #362b0f;
+  color: #f8c900;
 }
 
 /* Lung la lung linh */
