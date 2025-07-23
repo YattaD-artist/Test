@@ -18,28 +18,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const maxScroll = 300;
 
   // ✅ Gộp toàn bộ xử lý scroll vào MỘT listener duy nhất
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const progress = Math.min(scrollY / maxScroll, 1);
+const hint = document.getElementById('themeHint');
+let lastScrollY = window.scrollY;
 
-    // 1. Floating icons hiện khi icon chính ra khỏi màn hình
-    const mainIconsBottom = mainIcons?.getBoundingClientRect().bottom || 0;
-    const shouldShowFloatingIcons = mainIconsBottom < 0 || scrollY > 300;
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const progress = Math.min(scrollY / maxScroll, 1);
 
-    if (shouldShowFloatingIcons) {
-      floatingIcons?.classList.add("visible");
-      leftImage?.classList.add("slide-out-on-icons");
-      rightImage?.classList.add("slide-out-on-icons");
-    } else {
-      floatingIcons?.classList.remove("visible");
-      leftImage?.classList.remove("slide-out-on-icons");
-      rightImage?.classList.remove("slide-out-on-icons");
-    }
+  // 1. Floating icons hiện khi icon chính ra khỏi màn hình
+  const mainIconsBottom = mainIcons?.getBoundingClientRect().bottom || 0;
+  const shouldShowFloatingIcons = mainIconsBottom < 0 || scrollY > 300;
 
-    // 3. Thay đổi margin-top của wrapper
-    const newMargin = Math.max(minMargin, maxMargin - scrollY);
-    wrapper.style.marginTop = `${newMargin}px`;
-  });
+  if (shouldShowFloatingIcons) {
+    floatingIcons?.classList.add("visible");
+    leftImage?.classList.add("slide-out-on-icons");
+    rightImage?.classList.add("slide-out-on-icons");
+  } else {
+    floatingIcons?.classList.remove("visible");
+    leftImage?.classList.remove("slide-out-on-icons");
+    rightImage?.classList.remove("slide-out-on-icons");
+  }
+
+  // 2. Ẩn dòng gợi ý chuyển chế độ nếu cuộn đủ
+  if (hint && Math.abs(scrollY - lastScrollY) > 10) {
+    hint.classList.add('hidden');
+  }
+  lastScrollY = scrollY;
+
+  // 3. Thay đổi margin-top của wrapper
+  const newMargin = Math.max(minMargin, maxMargin - scrollY);
+  wrapper.style.marginTop = `${newMargin}px`;
+});
+
   
     // Chế độ sáng tối
 const toggleBtn = document.getElementById('theme-toggle');
