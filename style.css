@@ -83,6 +83,28 @@ body.dark-mode .theme-toggle {
 body.dark-mode .theme-toggle:hover {
   color: #f8c900;
 }
+.theme-hint { /* Gợi ý bên cạnh nút chế độ */
+  position: fixed;
+  top: 10rem;
+  right: calc(5rem + 60px); /* cách nút toggle một đoạn */
+  font-size: 1rem;
+  color: #0c2f4d;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 98;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+body.dark-mode .theme-hint {
+  color: #f8c365;
+  background: rgba(15, 23, 42, 0.6);
+}
+.theme-hint.hidden {
+  opacity: 0;/* Ẩn khi cuộn */
+}
 
 /* Lung la lung linh */
 .gold-sparkles {
