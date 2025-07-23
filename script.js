@@ -22,8 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
 const sparkleCount = 30;
 
 for (let i = 0; i < sparkleCount; i++) {
-  const sparkle = document.createElement("div");
-  sparkle.classList.add("sparkle");
+ const sparkle = document.createElement("div");
+sparkle.classList.add("sparkle");
+
+// 50% cơ hội thêm class "faint"
+if (Math.random() < 0.5) {
+  sparkle.classList.add("faint");
 
   // Random vị trí và animation delay
   sparkle.style.left = `${Math.random() * 100}%`;
