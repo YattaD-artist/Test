@@ -64,7 +64,7 @@ body {
   transform: rotateZ(-0.1deg);
   filter: drop-shadow(0 0 0.7px rgba(0, 0, 0, 0.5));
 }
-/* Vị trí Nút chế độ sáng tối */
+/* Nút chế độ sáng tối */
 .theme-toggle {
   position: fixed;
   top: 15rem;
@@ -74,13 +74,15 @@ body {
   font-size: 3.5rem;
   cursor: pointer;
   z-index: 99;
-  color: #1e3a8a; /* Màu biểu tượng ở chế độ sáng */
+  color: #fca63f; /* Màu biểu tượng ở chế độ sáng */
   transition: color 0.3s;
 }
-
-/* Khi ở chế độ tối */
 body.dark-mode .theme-toggle {
-  color: #f43f5e;
+  color: #f0e7cd;
+}
+.theme-toggle:hover {
+  transform: scale(1.2);
+  color: #f0e7cd;
 }
 
 /* Lung la lung linh */
