@@ -44,6 +44,14 @@ window.addEventListener('scroll', () => {
     hint.classList.add('hidden');
   }
   lastScrollY = scrollY;
+  
+// Ẩn hint khi hover hoặc click nút đổi theme
+toggleBtn.addEventListener('mouseenter', () => {
+  hint.classList.add('hidden');
+});
+toggleBtn.addEventListener('click', () => {
+  hint.classList.add('hidden');
+});
 
   // 3. Thay đổi margin-top của wrapper
   const newMargin = Math.max(minMargin, maxMargin - scrollY);
