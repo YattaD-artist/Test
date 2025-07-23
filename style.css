@@ -31,19 +31,49 @@ body {
   overflow: hidden;
 }
 
-/* Viền chỉ khâu được tạo bằng pseudo-element */
+/* Viền chỉ khâu song song thủ công */
 .content::before {
   content: "";
   position: absolute;
-  top: 8px;
-  left: 8px;
-  right: 8px;
-  bottom: 8px;
-  border: 2px dashed #3879dc;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
   border-radius: 10px;
   pointer-events: none;
-}
 
+  /* Tạo đường chỉ đôi thủ công bằng gradient */
+  background-image: 
+    repeating-linear-gradient(to right, 
+      transparent 0 10px, 
+      #3879dc 10px 16px, 
+      transparent 16px 30px),   /* top */
+    repeating-linear-gradient(to bottom, 
+      transparent 0 10px, 
+      #3879dc 10px 16px, 
+      transparent 16px 30px),  /* right */
+    repeating-linear-gradient(to left, 
+      transparent 0 10px, 
+      #3879dc 10px 16px, 
+      transparent 16px 30px),   /* bottom */
+    repeating-linear-gradient(to top, 
+      transparent 0 10px, 
+      #3879dc 10px 16px, 
+      transparent 16px 30px);   /* left */
+
+  background-repeat: no-repeat;
+  background-position: 
+    top left, top right, bottom right, bottom left;
+  background-size: 
+    calc(100% - 20px) 2px,    /* top */
+    2px calc(100% - 20px),    /* right */
+    calc(100% - 20px) 2px,    /* bottom */
+    2px calc(100% - 20px);    /* left */
+
+  /* Hiệu ứng lệch tay nhẹ và chiều sâu */
+  transform: rotateZ(-0.1deg);
+  filter: drop-shadow(0 0 0.7px rgba(0, 0, 0, 0.25));
+}
 
 h1 {
   font-size: 2em;
