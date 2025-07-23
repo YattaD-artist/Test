@@ -531,7 +531,7 @@ height: 200px;
     font-size: 0.8em;
     padding: 5px 10px;
   }
-
+}
 /* === DARK MODE === */
 /* === DARK MODE === */
 /* === DARK MODE === */
@@ -610,6 +610,4 @@ body.dark-mode .copy-note {
 /* Comic viewer nền */
 body.dark-mode .comic-viewer {
   background: rgba(0, 0, 0, 0.95);
-}
-
 }
