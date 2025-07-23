@@ -7,9 +7,9 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: color-gradient(to right, rgba(255,117,141,0.6), rgba(44, 163, 201,0.3)),
-              repeating-linear-gradient(90deg, #dbe2fe 0 20px, #dbe8fe 20px 40px),
-              repeating-linear-gradient(0deg, #bde2fe 0 20px, #dbe8fe 20px 40px);
+  background: linear-gradient(to right, rgba(255,117,141,0.6), rgba(44, 163, 201,0.3)),
+              repeating-linear-gradient(90deg, #dbeafe 0 20px, #dbebfe 20px 40px),
+              repeating-linear-gradient(0deg, #bdeafe 0 20px, #dbebfe 20px 40px);
   background-blend-mode: overlay;
   min-height: 100vh;
   display: flex;
