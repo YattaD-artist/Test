@@ -508,6 +508,13 @@ iframe {
     top: 0.5rem;
     right: 0.5rem;
     font-size: 1.25rem;
+  } 
+  #themeHint {
+    font-size: 14px;
+    white-space: nowrap;
+    max-width: 60vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .content {
