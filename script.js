@@ -13,52 +13,102 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainIcons = document.querySelector(".icons");
   const wrapper = document.querySelector('.images-wrapper');
 
+  const toggleBtn = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+  const hint = document.getElementById('themeHint');
+
+  const sparklesContainer = document.getElementById("gold-sparkles");
+
   const maxMargin = window.innerHeight * 1.2;
   const minMargin = 32;
   const maxScroll = 300;
 
-  // ✅ Gộp toàn bộ xử lý scroll vào MỘT listener duy nhất
-const hint = document.getElementById('themeHint');
-let lastScrollY = window.scrollY;
+  if (!toggleBtn || !themeIcon) return;
 
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  const progress = Math.min(scrollY / maxScroll, 1);
+  // Ẩn hint khi hover hoặc click
+  toggleBtn.addEventListener('mouseenter', () => hint?.classList.add('hidden'));
+  toggleBtn.addEventListener('click', () => hint?.classList.add('hidden'));
+  toggleBtn.addEventListener('touchstart', () => hint?.classList.add('hidden'), { passive: true });
 
-  // 1. Floating icons hiện khi icon chính ra khỏi màn hình
-  const mainIconsBottom = mainIcons?.getBoundingClientRect().bottom || 0;
-  const shouldShowFloatingIcons = mainIconsBottom < 0 || scrollY > 300;
-
-  if (shouldShowFloatingIcons) {
-    floatingIcons?.classList.add("visible");
-    leftImage?.classList.add("slide-out-on-icons");
-    rightImage?.classList.add("slide-out-on-icons");
-  } else {
-    floatingIcons?.classList.remove("visible");
-    leftImage?.classList.remove("slide-out-on-icons");
-    rightImage?.classList.remove("slide-out-on-icons");
+  // Đặt chế độ sáng/tối ban đầu
+  const isDarkMode = localStorage.getItem('theme') === 'dark';
+  if (isDarkMode) {
+    document.body.classList.add('dark-mode');
+    themeIcon.classList.remove('fa-sun');
+    themeIcon.classList.add('fa-moon');
   }
 
-  // 2. Ẩn dòng gợi ý chuyển chế độ nếu cuộn đủ
-  if (hint && Math.abs(scrollY - lastScrollY) > 10) {
-    hint.classList.add('hidden');
+  // Chuyển đổi theme
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    themeIcon.classList.toggle('fa-sun', !isDark);
+    themeIcon.classList.toggle('fa-moon', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+    // Toggle sparkles theo theme
+    if (isDark) {
+      createSparkles();
+    } else {
+      sparklesContainer.innerHTML = '';
+    }
+  });
+
+  // 🌟 Tạo sparkles nếu đang ở dark mode
+  function createSparkles() {
+    if (!sparklesContainer || document.body.classList.contains('sparkles-added')) return;
+    sparklesContainer.innerHTML = '';
+    const sparkleCount = 30;
+    for (let i = 0; i < sparkleCount; i++) {
+      const sparkle = document.createElement("div");
+      sparkle.classList.add("sparkle");
+      if (Math.random() < 0.5) sparkle.classList.add("faint");
+      sparkle.style.left = `${Math.random() * 100}%`;
+      sparkle.style.bottom = `-10px`;
+      sparkle.style.animationDuration = `${10 + Math.random() * 10}s`;
+      sparkle.style.animationDelay = `${Math.random() * 20}s`;
+      const size = 6 + Math.random() * 8;
+      sparkle.style.width = `${size}px`;
+      sparkle.style.height = `${size}px`;
+      sparklesContainer.appendChild(sparkle);
+    }
+    document.body.classList.add('sparkles-added');
   }
-  lastScrollY = scrollY;
-  
-// Ẩn hint khi hover hoặc click nút đổi theme
-toggleBtn.addEventListener('mouseenter', () => {
-  hint.classList.add('hidden');
-});
-toggleBtn.addEventListener('click', () => {
-  hint.classList.add('hidden');
-});
 
-  // 3. Thay đổi margin-top của wrapper
-  const newMargin = Math.max(minMargin, maxMargin - scrollY);
-  wrapper.style.marginTop = `${newMargin}px`;
-});
+  if (isDarkMode) {
+    createSparkles();
+  }
 
-  
+  // 🌀 Scroll effect và các phần khác (bạn viết đúng rồi)…
+  // Giữ nguyên từ đây ↓ (không cần sửa)
+
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const progress = Math.min(scrollY / maxScroll, 1);
+
+    const mainIconsBottom = mainIcons?.getBoundingClientRect().bottom || 0;
+    const shouldShowFloatingIcons = mainIconsBottom < 0 || scrollY > 300;
+
+    if (shouldShowFloatingIcons) {
+      floatingIcons?.classList.add("visible");
+      leftImage?.classList.add("slide-out-on-icons");
+      rightImage?.classList.add("slide-out-on-icons");
+    } else {
+      floatingIcons?.classList.remove("visible");
+      leftImage?.classList.remove("slide-out-on-icons");
+      rightImage?.classList.remove("slide-out-on-icons");
+    }
+
+    if (hint && Math.abs(scrollY - lastScrollY) > 10) {
+      hint.classList.add('hidden');
+    }
+    lastScrollY = scrollY;
+
+    const newMargin = Math.max(minMargin, maxMargin - scrollY);
+    wrapper.style.marginTop = `${newMargin}px`;
+  });
+
     // Chế độ sáng tối
 const toggleBtn = document.getElementById('theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
