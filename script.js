@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Hide hint when user interacts
     toggleBtn.addEventListener('mouseenter', () => hint?.classList.add('hidden'));
-    toggleBtn.addEventListener('click', () => hint?.classList.add('hidden'));
     toggleBtn.addEventListener('touchstart', () => hint?.classList.add('hidden'), { passive: true });
 
     document.addEventListener('mousemove', (e) => {
