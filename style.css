@@ -80,10 +80,14 @@ body {
   height: 30px;
   background-color: #fff829;
   border-radius: 50%;
-  opacity: 0.6;
+  opacity: 0.9;
   animation: floatSparkle linear infinite;
   filter: blur(1px);
 }
+.sparkle.faint {
+  opacity: 0.4; /* những sparkle nhỏ hơn, xa hơn */
+}
+
 @keyframes floatSparkle {
   0%   { transform: translateY(0) translateX(0); opacity: 0.6; }
   50%  { transform: translateY(-50vh) translateX(10px); }
