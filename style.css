@@ -115,6 +115,8 @@ body.dark-mode .theme-hint {
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
+  display: none;
+}
 }
 
 .sparkle {
@@ -511,11 +513,7 @@ iframe {
     font-size: 1.25rem;
   } 
   #themeHint {
-    font-size: 14px;
-    white-space: nowrap;
-    max-width: 60vw;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: none !important;
   }
 
   .content {
@@ -574,6 +572,11 @@ font-size: 1.3em;
 body.dark-mode {
   background: linear-gradient(to right, #0f172a, #1e293b); /* nền đêm xanh đậm */
   color: #e2e8f0; /* màu chữ sáng */
+}
+
+/* Khi dark-mode: hiển thị lại */
+body.dark-mode .gold-sparkles {
+  display: block;
 }
 
 /* content box */
