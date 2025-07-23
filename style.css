@@ -85,7 +85,9 @@ body {
   filter: blur(1px);
 }
 .sparkle.faint {
-  opacity: 0.4; /* những sparkle nhỏ hơn, xa hơn */
+  opacity: 0.3;
+  filter: blur(0.8px) brightness(1.1);
+  transform: scale(0.8);
 }
 
 @keyframes floatSparkle {
