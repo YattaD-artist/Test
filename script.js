@@ -25,23 +25,26 @@ for (let i = 0; i < sparkleCount; i++) {
  const sparkle = document.createElement("div");
 sparkle.classList.add("sparkle");
 
+sparkle.classList.add("sparkle");
+
 // 50% cơ hội thêm class "faint"
 if (Math.random() < 0.5) {
   sparkle.classList.add("faint");
-
-  // Random vị trí và animation delay
-  sparkle.style.left = `${Math.random() * 100}%`;
-  sparkle.style.bottom = `-10px`;
-  sparkle.style.animationDuration = `${10 + Math.random() * 10}s`;
-  sparkle.style.animationDelay = `${Math.random() * 20}s`;
-
-  // Optionally: random size
-  const size = 6 + Math.random() * 8;
-  sparkle.style.width = `${size}px`;
-  sparkle.style.height = `${size}px`;
-
-  container.appendChild(sparkle);
 }
+
+// Random vị trí và animation delay
+sparkle.style.left = `${Math.random() * 100}%`;
+sparkle.style.bottom = `-10px`;
+sparkle.style.animationDuration = `${10 + Math.random() * 10}s`;
+sparkle.style.animationDelay = `${Math.random() * 20}s`;
+
+// Optionally: random size
+const size = 6 + Math.random() * 8;
+sparkle.style.width = `${size}px`;
+sparkle.style.height = `${size}px`;
+
+// ✅ Quan trọng: luôn append sparkle
+container.appendChild(sparkle);
 
   // ✅ Gộp toàn bộ xử lý scroll vào MỘT listener duy nhất
   window.addEventListener('scroll', () => {
