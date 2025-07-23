@@ -2,61 +2,24 @@ document.addEventListener("DOMContentLoaded", () => {
   let comicPages = [];
   let currentPage = 0;
 
+  // ===== DOM elements =====
   const viewer = document.getElementById("comicViewer");
   const deck = document.getElementById("comicDeck");
   const audio = document.getElementById("kaia-audio");
   const wowAudio = document.getElementById("wow-audio");
-
   const floatingIcons = document.querySelector('.floating-icons');
   const leftImage = document.querySelector('.side-image.left');
   const rightImage = document.querySelector('.side-image.right');
   const mainIcons = document.querySelector(".icons");
   const wrapper = document.querySelector('.images-wrapper');
-
   const toggleBtn = document.getElementById('theme-toggle');
   const themeIcon = document.getElementById('theme-icon');
   const hint = document.getElementById('themeHint');
-
   const sparklesContainer = document.getElementById("gold-sparkles");
 
-  const maxMargin = window.innerHeight * 1.2;
-  const minMargin = 32;
-  const maxScroll = 300;
-
-  if (!toggleBtn || !themeIcon) return;
-
-  // Ẩn hint khi hover hoặc click
-  toggleBtn.addEventListener('mouseenter', () => hint?.classList.add('hidden'));
-  toggleBtn.addEventListener('click', () => hint?.classList.add('hidden'));
-  toggleBtn.addEventListener('touchstart', () => hint?.classList.add('hidden'), { passive: true });
-
-  // Đặt chế độ sáng/tối ban đầu
-  const isDarkMode = localStorage.getItem('theme') === 'dark';
-  if (isDarkMode) {
-    document.body.classList.add('dark-mode');
-    themeIcon.classList.remove('fa-sun');
-    themeIcon.classList.add('fa-moon');
-  }
-
-  // Chuyển đổi theme
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    const isDark = document.body.classList.contains('dark-mode');
-    themeIcon.classList.toggle('fa-sun', !isDark);
-    themeIcon.classList.toggle('fa-moon', isDark);
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-
-    // Toggle sparkles theo theme
-    if (isDark) {
-      createSparkles();
-    } else {
-      sparklesContainer.innerHTML = '';
-    }
-  });
-
-  // 🌟 Tạo sparkles nếu đang ở dark mode
+  // ===== Theme + Sparkles =====
   function createSparkles() {
-    if (!sparklesContainer || document.body.classList.contains('sparkles-added')) return;
+    if (!sparklesContainer) return;
     sparklesContainer.innerHTML = '';
     const sparkleCount = 30;
     for (let i = 0; i < sparkleCount; i++) {
@@ -72,16 +35,52 @@ document.addEventListener("DOMContentLoaded", () => {
       sparkle.style.height = `${size}px`;
       sparklesContainer.appendChild(sparkle);
     }
-    document.body.classList.add('sparkles-added');
   }
 
-  if (isDarkMode) {
-    createSparkles();
+  function setTheme(isDark) {
+    document.body.classList.toggle('dark-mode', isDark);
+    themeIcon.classList.toggle('fa-sun', !isDark);
+    themeIcon.classList.toggle('fa-moon', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    if (isDark) {
+      createSparkles();
+    } else if (sparklesContainer) {
+      sparklesContainer.innerHTML = '';
+    }
   }
 
-  // 🌀 Scroll effect và các phần khác (bạn viết đúng rồi)…
-  // Giữ nguyên từ đây ↓ (không cần sửa)
+  // Initial theme setup
+  if (toggleBtn && themeIcon) {
+    const isDarkMode = localStorage.getItem('theme') === 'dark';
+    setTheme(isDarkMode);
 
+    // Hide hint when user interacts
+    toggleBtn.addEventListener('mouseenter', () => hint?.classList.add('hidden'));
+    toggleBtn.addEventListener('click', () => hint?.classList.add('hidden'));
+    toggleBtn.addEventListener('touchstart', () => hint?.classList.add('hidden'), { passive: true });
+
+    document.addEventListener('mousemove', (e) => {
+  if (!toggleBtn || !hint || hint.classList.contains('hidden')) return;
+
+  const rect = toggleBtn.getBoundingClientRect();
+  const margin = 80; // phạm vi "gần"
+
+  if (
+    e.clientX > rect.left - margin &&
+    e.clientX < rect.right + margin &&
+    e.clientY > rect.top - margin &&
+    e.clientY < rect.bottom + margin
+  ) {
+    hint.classList.add('hidden');
+  }
+});
+
+  }
+
+  // ===== Scroll effect =====
+  const maxMargin = window.innerHeight * 1.2;
+  const minMargin = 32;
+  const maxScroll = 300;
   let lastScrollY = window.scrollY;
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
@@ -106,57 +105,10 @@ document.addEventListener("DOMContentLoaded", () => {
     lastScrollY = scrollY;
 
     const newMargin = Math.max(minMargin, maxMargin - scrollY);
-    wrapper.style.marginTop = `${newMargin}px`;
+    if (wrapper) wrapper.style.marginTop = `${newMargin}px`;
   });
 
-    // Chế độ sáng tối
-const toggleBtn = document.getElementById('theme-toggle');
-const themeIcon = document.getElementById('theme-icon');
-if (!toggleBtn || !themeIcon) return;
-if (localStorage.getItem('theme') === 'dark') {
-  document.body.classList.add('dark-mode');
-  themeIcon.classList.remove('fa-sun');
-  themeIcon.classList.add('fa-moon');// Kiểm tra nếu có lưu trạng thái trước đó
-}
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  const isDark = document.body.classList.contains('dark-mode');
-  themeIcon.classList.toggle('fa-sun', !isDark);  // Đổi biểu tượng
-  themeIcon.classList.toggle('fa-moon', isDark);
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');  // Lưu trạng thái
-});
-
-  // Lung linh
-  const container = document.getElementById("gold-sparkles");
-const sparkleCount = 30;
-
-for (let i = 0; i < sparkleCount; i++) {
- const sparkle = document.createElement("div");
-sparkle.classList.add("sparkle");
-
-sparkle.classList.add("sparkle");
-
-// 50% cơ hội thêm class "faint"
-if (Math.random() < 0.5) {
-  sparkle.classList.add("faint");
-}
-
-// Random vị trí và animation delay
-sparkle.style.left = `${Math.random() * 100}%`;
-sparkle.style.bottom = `-10px`;
-sparkle.style.animationDuration = `${10 + Math.random() * 10}s`;
-sparkle.style.animationDelay = `${Math.random() * 20}s`;
-
-// Optionally: random size
-const size = 6 + Math.random() * 8;
-sparkle.style.width = `${size}px`;
-sparkle.style.height = `${size}px`;
-
-// ✅ Quan trọng: luôn append sparkle
-container.appendChild(sparkle);
-  }
-
-  // 📌 Copy email
+  // ===== Copy email =====
   window.copyEmail = function(element) {
     const email = "ttien39169@gmail.com";
     navigator.clipboard.writeText(email).then(() => {
@@ -165,7 +117,7 @@ container.appendChild(sparkle);
     }).catch(err => console.error("Lỗi khi copy email:", err));
   };
 
-  // 📌 Zoom ảnh
+  // ===== Zoom ảnh =====
   window.zoomImage = function(img) {
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
@@ -196,7 +148,7 @@ container.appendChild(sparkle);
     overlay.addEventListener('click', () => overlay.remove());
   };
 
-  // 📚 Logic xem truyện
+  // ===== Comic logic =====
   function renderDeck(direction = null) {
     const prevImgs = Array.from(deck.querySelectorAll("img"));
     const outgoing = prevImgs.find(img => img.classList.contains("active"));
@@ -282,11 +234,9 @@ container.appendChild(sparkle);
   });
 
   let xDown = null;
-
   viewer.addEventListener("touchstart", evt => {
     xDown = evt.touches[0].clientX;
   }, false);
-
   viewer.addEventListener("touchend", evt => {
     if (!xDown) return;
     const xUp = evt.changedTouches[0].clientX;
@@ -301,7 +251,7 @@ container.appendChild(sparkle);
     xDown = null;
   }, false);
 
-  // 📌 Gọi truyện
+  // ===== Comic button events =====
   document.getElementById("btn-read-wow").addEventListener("click", () => {
     fadeOutAudio(audio);
     fadeOutAudio(wowAudio);
@@ -340,7 +290,7 @@ container.appendChild(sparkle);
     openComicGallery();
   });
 
-  // ✅ Preload
+  // ===== Preload images =====
   const preloadImages = [
     "WOW/01.webp", "WOW/02.webp", "WOW/03.webp", "WOW/04.webp", "WOW/05.webp", "WOW/06.webp",
     "KAYA/01.webp", "KAYA/02.webp", "KAYA/03.webp", "KAYA/04.webp", "KAYA/05.webp",
