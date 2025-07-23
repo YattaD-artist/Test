@@ -76,8 +76,8 @@ body {
 
 .sparkle {
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 30px;
+  height: 30px;
   background-color: #fff829;
   border-radius: 50%;
   opacity: 0.6;
