@@ -527,7 +527,7 @@ iframe {
 display: flex; /* hoặc block nếu cần */
     position: fixed;
     top: 50%;
-    left: 0;
+    left: 0.5rem;
 font-size: 1.3em; 
     transform: translateY(-50%);
     z-index: 1000;
