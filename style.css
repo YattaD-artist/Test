@@ -531,4 +531,85 @@ height: 200px;
     font-size: 0.8em;
     padding: 5px 10px;
   }
+
+/* === DARK MODE === */
+/* === DARK MODE === */
+/* === DARK MODE === */
+body.dark-mode {
+  background: linear-gradient(to right, #0f172a, #1e293b); /* nền đêm xanh đậm */
+  color: #e2e8f0; /* màu chữ sáng */
+}
+
+/* content box */
+body.dark-mode .content {
+  background-color: rgba(15, 23, 42, 0.85); /* xanh đen mờ */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Đường chỉ phát sáng hồng cam */
+body.dark-mode .content::before {
+  background-image: 
+    repeating-linear-gradient(to right, transparent 0 5px, #f8c365 5px 25px, transparent 25px 32px),
+    repeating-linear-gradient(to bottom, transparent 0 5px, #f8c365 5px 25px, transparent 25px 32px),
+    repeating-linear-gradient(to left, transparent 0 5px, #f8c365 5px 25px, transparent 25px 32px),
+    repeating-linear-gradient(to top, transparent 0 5px, #f8c365 5px 25px, transparent 25px 32px);
+  filter: drop-shadow(0 0 0.7px rgba(255, 255, 255, 0.5));
+}
+
+/* Heading */
+body.dark-mode h1,
+body.dark-mode h3,
+body.dark-mode .portfolio-label {
+  color: #f8fafc;
+}
+
+body.dark-mode h2 {
+  color: #f8c365;
+}
+
+/* Link icons */
+body.dark-mode .icons a,
+body.dark-mode .floating-icons a {
+  color: #e2e8f0;
+}
+
+body.dark-mode .icons a:hover,
+body.dark-mode .floating-icons a:hover {
+  color: #f8c365;
+}
+
+/* Award box */
+body.dark-mode .award-item {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .award-item button {
+  background-color: #f8c365;
+  color: #1e293b;
+}
+
+body.dark-mode .award-item button:hover {
+  background-color: #fb923c;
+}
+
+/* Nút toggle đã có màu riêng – không cần sửa lại */
+
+/* Ảnh và hover */
+body.dark-mode .images img,
+body.dark-mode .PunkgaMerch img,
+body.dark-mode .upz-main,
+body.dark-mode .upz-hover {
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+/* Gmail note */
+body.dark-mode .copy-note {
+  color: #f8c365;
+}
+
+/* Comic viewer nền */
+body.dark-mode .comic-viewer {
+  background: rgba(0, 0, 0, 0.95);
+}
+
 }
