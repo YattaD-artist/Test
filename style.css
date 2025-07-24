@@ -577,6 +577,12 @@ font-size: 1.3em;
     font-size: 0.8em;
     padding: 5px 10px;
   }
+    .comic-deck img {
+    width: 100%;
+    height: auto;
+    max-width: 90vw;
+    }
+
 }
 /* === DARK MODE === */
 /* === DARK MODE === */
