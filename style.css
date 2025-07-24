@@ -582,7 +582,7 @@ font-size: 1.3em;
 /* === DARK MODE === */
 /* === DARK MODE === */
 body.dark-mode {
-linear-gradient(to right, rgba(15, 23, 42, 0.6), rgba(30, 41, 59, 0.6)), /* nền đêm xanh đậm mờ */
+linear-gradient(to right, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.8)), /* nền đêm xanh đậm mờ */
   repeating-linear-gradient(90deg, #dbeafe 0 20px, #bfdbfe 20px 40px),
               repeating-linear-gradient(0deg, #dbeafe 0 20px, #bfdbfe 20px 40px);
   background-blend-mode: Multiply;
